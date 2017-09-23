@@ -5,7 +5,7 @@ using System.Data;
 using System.Drawing;
 using System.Linq;
 using System.Text;
-using System.Threading.Tasks;
+using System.Threading;
 using System.Windows.Forms;
 
 
@@ -56,31 +56,37 @@ namespace Foosball
             Mat imgThreshHigh = new Mat(frame.Size, DepthType.Cv8U, 1);
             Mat imgThresh = new Mat(frame.Size, DepthType.Cv8U, 1);
 
+
             CvInvoke.CvtColor(frame, imgHSV, ColorConversion.Bgr2Hsv); //frame converted from BGR to HSV
 
-            CvInvoke.InRange(imgHSV, new ScalarArray(new MCvScalar(0, 155, 155)), new ScalarArray(new MCvScalar(8, 255, 255)), imgThreshLow); //filtering out colors
-            CvInvoke.InRange(imgHSV, new ScalarArray(new MCvScalar(10, 155, 155)), new ScalarArray(new MCvScalar(22, 255, 255)), imgThreshHigh);
+            //filtering out colors
+            CvInvoke.InRange(imgHSV, new ScalarArray(new MCvScalar(0, 165, 165)), new ScalarArray(new MCvScalar(25, 255, 255)), imgThreshLow);
+            CvInvoke.InRange(imgHSV, new ScalarArray(new MCvScalar(0, 165, 165)), new ScalarArray(new MCvScalar(25, 255, 255)), imgThreshHigh);
 
             CvInvoke.Add(imgThreshLow, imgThreshHigh, imgThresh);
 
             CvInvoke.GaussianBlur(imgThresh, imgThresh, new Size(3, 3), 0); //filtering
 
-            Mat structuringElement = CvInvoke.GetStructuringElement(ElementShape.Rectangle, new Size(3, 3), new Point(-1, -1)); //finding circle
+            Mat structuringElement = CvInvoke.GetStructuringElement(ElementShape.Rectangle, new Size(3, 3), new Point(-1, -1));
 
+            //filling small holes in the foreground
             CvInvoke.Dilate(imgThresh, imgThresh, structuringElement, new Point(-1, -1), 1, BorderType.Default, new MCvScalar(0, 0, 0));
             CvInvoke.Erode(imgThresh, imgThresh, structuringElement, new Point(-1, -1), 1, BorderType.Default, new MCvScalar(0, 0, 0));
 
-            CircleF[] circles = CvInvoke.HoughCircles(imgThresh, HoughType.Gradient, 2.0, imgThresh.Rows / 4, 100, 50, 10, 400);
+
+
+            //finding circle/ball
+            CircleF[] circles = CvInvoke.HoughCircles(imgThresh, HoughType.Gradient, 2.0, imgThresh.Rows / 4, 100, 30, 8, 50);
 
             foreach (CircleF circle in circles) //drawing circle and writing XYRadius
             {
-                if (textBoxXYRadius.Text != "") //if we are not on the first line in the text box
+                if (textBoxXYRadius.Text != "")
                 {
-                    textBoxXYRadius.AppendText(Environment.NewLine);         //then insert a new line char
+                    textBoxXYRadius.AppendText(Environment.NewLine);
                 }
 
                 textBoxXYRadius.AppendText("ball position x = " + circle.Center.X.ToString().PadLeft(4) + ", y = " + circle.Center.Y.ToString().PadLeft(4) + ", radius = " + circle.Radius.ToString("###.000").PadLeft(7));
-                textBoxXYRadius.ScrollToCaret();             //scroll down in text box so most recent line added (at the bottom) will be shown
+                textBoxXYRadius.ScrollToCaret();
 
                 CvInvoke.Circle(frame, new Point((int)circle.Center.X, (int)circle.Center.Y), (int)circle.Radius, new MCvScalar(0, 0, 255), 2);
                 CvInvoke.Circle(frame, new Point((int)circle.Center.X, (int)circle.Center.Y), 3, new MCvScalar(0, 255, 0), -1);
@@ -88,7 +94,6 @@ namespace Foosball
 
             ibOriginal.Image = frame; //frame with detected ball
             ibThresh.Image = imgThresh;
-
         }
 
     }
