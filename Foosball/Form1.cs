@@ -7,13 +7,14 @@ using System.Linq;
 using System.Text;
 using System.Threading;
 using System.Windows.Forms;
-
+using System.IO;
 
 using Emgu.CV;
 using Emgu.CV.CvEnum;
 using Emgu.CV.Structure; 
 using Emgu.CV.UI;
 using Emgu.CV.Cvb;
+
 
 namespace Foosball
 {
@@ -30,12 +31,14 @@ namespace Foosball
 
         private void Form1_Load(object sender, EventArgs e)
         {
-            OpenFileDialog ofd = new OpenFileDialog();
-            ofd.Filter = "Video Files |*.mp4";
-
-            if(ofd.ShowDialog()==DialogResult.OK)
+            try
             {
-                capture = new Emgu.CV.VideoCapture(ofd.FileName);
+                String videoDirectory = "C:/Users/Migle/source/Foosball/Foosball/video_files/video-1506004806.mp4";
+                capture = new VideoCapture(videoDirectory);
+            }
+            catch (FileNotFoundException exception)
+            {
+                Console.WriteLine("Video file \"" + exception.Message + "\" could not be opened");
             }
             Application.Idle += ProcessFrameAndUpdateGUI;
         }
