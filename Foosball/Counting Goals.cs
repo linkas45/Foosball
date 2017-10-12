@@ -17,7 +17,8 @@ namespace Foosball
     public partial class Counting_Goals : Form
     {
         VideoCapture capture;
-        public int goalsCount = 0;
+        public int goalsCountTeam1 = 0;
+        public int goalsCountTeam2 = 0;
 
         public Counting_Goals()
         {
@@ -99,11 +100,17 @@ namespace Foosball
 
         private void OutputScore()
         {
-            if (GoalsCountText.Text != "")
-                GoalsCountText.AppendText(Environment.NewLine);
+            Start_Screen StartScreen = new Start_Screen();
+            if (TextBoxGoalsTeam1.Text != "")
+                TextBoxGoalsTeam1.AppendText(Environment.NewLine);
 
-                GoalsCountText.AppendText(text: "Current goals count: " + goalsCount.ToString());
-             
+            TextBoxGoalsTeam1.AppendText(text: StartScreen.Team1Name + " " + goalsCountTeam1.ToString());
+
+
+            if (TextBoxGoalsTeam2.Text != "")
+                TextBoxGoalsTeam2.AppendText(Environment.NewLine);
+
+            TextBoxGoalsTeam2.AppendText(text: StartScreen.Team2Name + " "  + goalsCountTeam2.ToString());
 
         }
 
@@ -114,7 +121,7 @@ namespace Foosball
 
         private void EndGame_Click(object sender, EventArgs e)
         {
-            ScoreInput scoreInput = new ScoreInput(goalsCount);
+            ScoreInput scoreInput = new ScoreInput(goalsCountTeam1, goalsCountTeam2);
             this.Hide();
             scoreInput.Show();
 
@@ -123,6 +130,37 @@ namespace Foosball
         private void textBox1_TextChanged(object sender, EventArgs e)
         {
 
+        }
+
+
+
+        private void PBGoalPlus1_Click(object sender, EventArgs e)
+        {
+            goalsCountTeam1++;
+        }
+
+        private void PBGoalMinus1_Click(object sender, EventArgs e)
+        {
+            if (goalsCountTeam1 > 0)
+                goalsCountTeam1--;
+        }
+
+        private void PBGoalPlus2_Click(object sender, EventArgs e)
+        {
+            goalsCountTeam2++;
+        }
+
+        private void PBGoalMinus2_Click(object sender, EventArgs e)
+        {
+            if (goalsCountTeam1 > 0)
+                goalsCountTeam1--;
+        }
+
+
+        private void ButtonLeaderboards_Click(object sender, EventArgs e)
+        {
+            Leaderboards leaderboards = new Leaderboards();
+            leaderboards.Show();
         }
     }
 }

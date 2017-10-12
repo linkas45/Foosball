@@ -12,11 +12,18 @@ namespace Foosball
 {
     public partial class Start_Screen : Form
     {
-        private static string teamName;
-        public string TeamName
+        private static string team1Name;
+        public string Team1Name
         {
-            get { return teamName; }
-            set { teamName = value; }
+            get { return team1Name; }
+            set { team1Name = value; }
+        }
+
+        private static string team2Name;
+        public string Team2Name
+        {
+            get { return team2Name; }
+            set { team2Name = value; }
         }
 
         public Start_Screen()
@@ -43,7 +50,8 @@ namespace Foosball
         {
 
             Counting_Goals countingGoals = new Counting_Goals();
-            this.TeamName = TeamNameInput.Text;
+            this.Team1Name = TextBoxTeam1NameInput.Text;
+            this.Team2Name = TextBoxTeam2NameInput.Text;
             this.Hide();
             countingGoals.Show();
 
