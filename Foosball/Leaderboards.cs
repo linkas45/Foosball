@@ -12,9 +12,12 @@ namespace Foosball
 {
     public partial class Leaderboards : Form
     {
+
+
         public Leaderboards()
         {
             InitializeComponent();
+
         }
     }
 }

@@ -48,12 +48,18 @@ namespace Foosball
 
         private void Start_Click(object sender, EventArgs e)
         {
-
-            Counting_Goals countingGoals = new Counting_Goals();
-            this.Team1Name = TextBoxTeam1NameInput.Text;
-            this.Team2Name = TextBoxTeam2NameInput.Text;
-            this.Hide();
-            countingGoals.Show();
+            if (TextBoxTeam1NameInput.Text == "" || TextBoxTeam2NameInput.Text == "")
+            {
+                MessageBox.Show("Enter your team names");
+            }
+            else
+            {
+                Counting_Goals countingGoals = new Counting_Goals();
+                this.Team1Name = TextBoxTeam1NameInput.Text;
+                this.Team2Name = TextBoxTeam2NameInput.Text;
+                this.Hide();
+                countingGoals.Show();
+            }
 
         }
     }

@@ -12,6 +12,8 @@ namespace Foosball
 {
     public partial class ScoreInput : Form
     {
+
+        Start_Screen StartScreen = new Start_Screen();
         private int goalsCount1, goalsCount2;
         private string team1Name, team2Name;
         public ScoreInput(int goalsCnt1,int goalsCnt2)
@@ -23,7 +25,7 @@ namespace Foosball
 
         private void ScoreInput_Load(object sender, EventArgs e)
         {
-            Start_Screen StartScreen = new Start_Screen();
+
             this.team1Name = StartScreen.Team1Name;
             this.team2Name = StartScreen.Team2Name;
             TextBoxTeamName1.AppendText(team1Name + ": ");
@@ -46,6 +48,8 @@ namespace Foosball
         {
             this.goalsCount1 = Int32.Parse(TextBoxGoalsCount1.Text);
             this.goalsCount2 = Int32.Parse(TextBoxGoalsCount2.Text);
+
+            SaveData.SaveDataToFile(team1Name, team2Name, goalsCount1, goalsCount2);
 
             Start_Screen StartScreen = new Start_Screen();
             this.Hide();

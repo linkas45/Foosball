@@ -32,7 +32,13 @@ namespace Foosball
 
             if (ofd.ShowDialog() == DialogResult.OK)
             {
-                capture = new Emgu.CV.VideoCapture(ofd.FileName);
+                try
+                {
+                    capture = new Emgu.CV.VideoCapture(ofd.FileName);
+                }
+                catch(Exception ex) {
+                    Console.WriteLine(ex);
+                }
             }
             Application.Idle += ProcessFrameAndUpdateGUI;
 
@@ -159,8 +165,7 @@ namespace Foosball
 
         private void ButtonLeaderboards_Click(object sender, EventArgs e)
         {
-            Leaderboards leaderboards = new Leaderboards();
-            leaderboards.Show();
+
         }
     }
 }
