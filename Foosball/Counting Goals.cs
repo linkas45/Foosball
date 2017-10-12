@@ -17,7 +17,7 @@ namespace Foosball
     public partial class Counting_Goals : Form
     {
         VideoCapture capture;
-        public int GoalsCount = 0;
+        public int goalsCount = 0;
 
         public Counting_Goals()
         {
@@ -102,7 +102,7 @@ namespace Foosball
             if (GoalsCountText.Text != "")
                 GoalsCountText.AppendText(Environment.NewLine);
 
-                GoalsCountText.AppendText(text: "Current goals count: " + GoalsCount.ToString());
+                GoalsCountText.AppendText(text: "Current goals count: " + goalsCount.ToString());
              
 
         }
@@ -114,6 +114,9 @@ namespace Foosball
 
         private void EndGame_Click(object sender, EventArgs e)
         {
+            ScoreInput scoreInput = new ScoreInput(goalsCount);
+            this.Hide();
+            scoreInput.Show();
 
         }
 

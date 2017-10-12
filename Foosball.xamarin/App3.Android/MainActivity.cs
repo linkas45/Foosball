@@ -11,7 +11,7 @@ using Emgu.CV.CvEnum;
 using Emgu.CV.Structure;
 using System.Drawing;
 using System;
-
+using App3.Droid;
 
 namespace Foosball.Droid
 {
