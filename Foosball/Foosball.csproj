@@ -64,12 +64,6 @@
     <Compile Include="Counting Goals.Designer.cs">
       <DependentUpon>Counting Goals.cs</DependentUpon>
     </Compile>
-    <Compile Include="Form1.cs">
-      <SubType>Form</SubType>
-    </Compile>
-    <Compile Include="Form1.Designer.cs">
-      <DependentUpon>Form1.cs</DependentUpon>
-    </Compile>
     <Compile Include="Leaderboards.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -93,9 +87,6 @@
     </Compile>
     <EmbeddedResource Include="Counting Goals.resx">
       <DependentUpon>Counting Goals.cs</DependentUpon>
-    </EmbeddedResource>
-    <EmbeddedResource Include="Form1.resx">
-      <DependentUpon>Form1.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Leaderboards.resx">
       <DependentUpon>Leaderboards.cs</DependentUpon>
