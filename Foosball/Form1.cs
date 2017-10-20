@@ -11,13 +11,14 @@ using System.IO;
 
 using Emgu.CV;
 using Emgu.CV.CvEnum;
-using Emgu.CV.Structure; 
+using Emgu.CV.Structure;
 using Emgu.CV.UI;
 using Emgu.CV.Cvb;
 
 
 namespace Foosball
 {
+   
     public partial class Form1 : Form
     {
 
@@ -31,14 +32,12 @@ namespace Foosball
 
         private void Form1_Load(object sender, EventArgs e)
         {
-            try
+            OpenFileDialog ofd = new OpenFileDialog();
+            ofd.Filter = "Video Files |*.mp4";
+
+            if (ofd.ShowDialog() == DialogResult.OK)
             {
-                String videoDirectory = "C:/Users/Migle/source/Foosball/Foosball/video_files/video-1506004806.mp4";
-                capture = new VideoCapture(videoDirectory);
-            }
-            catch (FileNotFoundException exception)
-            {
-                Console.WriteLine("Video file \"" + exception.Message + "\" could not be opened");
+                capture = new Emgu.CV.VideoCapture(ofd.FileName);
             }
             Application.Idle += ProcessFrameAndUpdateGUI;
         }
@@ -81,6 +80,9 @@ namespace Foosball
             //finding circle/ball
             CircleF[] circles = CvInvoke.HoughCircles(imgThresh, HoughType.Gradient, 2.0, imgThresh.Rows / 4, 100, 30, 8, 50);
 
+            int goalNumbOrange = 0;
+            int goalNumbWhite = 0;
+
             foreach (CircleF circle in circles) //drawing circle and writing XYRadius
             {
                 if (textBoxXYRadius.Text != "")
@@ -88,8 +90,24 @@ namespace Foosball
                     textBoxXYRadius.AppendText(Environment.NewLine);
                 }
 
-                textBoxXYRadius.AppendText("ball position x = " + circle.Center.X.ToString().PadLeft(4) + ", y = " + circle.Center.Y.ToString().PadLeft(4) + ", radius = " + circle.Radius.ToString("###.000").PadLeft(7));
-                textBoxXYRadius.ScrollToCaret();
+                if ( koord <= circle.Center.X <= koord && koord <= circle.Center.Y <= koord)
+                {
+                    goalNumbWhite++;
+                    textBoxXYRadius.AppendText("Goal for White");
+                    textBoxXYRadius.ScrollToCaret();
+                }
+                else if (koord <= circle.Center.X <= koord && koord <= circle.Center.Y <= koord)
+                {
+                    goalNumbWhite++;
+                    textBoxXYRadius.AppendText("Goal for Orange");
+                    textBoxXYRadius.ScrollToCaret();
+                }
+                else
+                {
+                    textBoxXYRadius.AppendText("ball position x = " + circle.Center.X.ToString().PadLeft(4) + ", y = " + circle.Center.Y.ToString().PadLeft(4) + ", radius = " + circle.Radius.ToString("###.000").PadLeft(7));
+                    textBoxXYRadius.AppendText("distance to goal x:" + (927 - circle.Center.X) + "distance to goal y:" + (257 - circle.Center.Y));
+                    textBoxXYRadius.ScrollToCaret();
+                }
 
                 CvInvoke.Circle(frame, new Point((int)circle.Center.X, (int)circle.Center.Y), (int)circle.Radius, new MCvScalar(0, 0, 255), 2);
                 CvInvoke.Circle(frame, new Point((int)circle.Center.X, (int)circle.Center.Y), 3, new MCvScalar(0, 255, 0), -1);
