@@ -78,6 +78,7 @@
     </Compile>
     <Compile Include="Program.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="timer1.cs" />
     <Compile Include="ScoreInput.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -109,6 +110,9 @@
       <DependentUpon>Resources.resx</DependentUpon>
       <DesignTime>True</DesignTime>
     </Compile>
+    <None Include="packages.config">
+      <SubType>Designer</SubType>
+    </None>
     <EmbeddedResource Include="ScoreInput.resx">
       <DependentUpon>ScoreInput.cs</DependentUpon>
     </EmbeddedResource>
