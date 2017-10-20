@@ -94,14 +94,38 @@ namespace Foosball
                     textBoxXY.AppendText(Environment.NewLine);
                 }
 
+                if ( 1790 <= circle.Center.X  && circle.Center.X <= 1810 && 450 <= circle.Center.Y && circle.Center.Y <= 500)
+                {
+                    goalsCountTeam1++;
+                    textBoxXY.AppendText("Goal for Team 1");
+                    textBoxXY.ScrollToCaret();
+                }
+                else if (70 <= circle.Center.X && circle.Center.X <= 80 && 450 <= circle.Center.X && circle.Center.Y <= 500)
+                {
+                    goalsCountTeam2++;
+                    textBoxXY.AppendText("Goal for Team 2");
+                    textBoxXY.ScrollToCaret();
+                }
+                else
+                {
                 textBoxXY.AppendText("ball position x = " + circle.Center.X.ToString().PadLeft(4) + ", y = " + circle.Center.Y.ToString().PadLeft(4) + ", radius = " + circle.Radius.ToString("###.000").PadLeft(7));
+               // textBoxXY.AppendText("distance to goal x:" + (927 - circle.Center.X) + "distance to goal y:" + (257 - circle.Center.Y));
                 textBoxXY.ScrollToCaret();
-                
+                }
+
                 CvInvoke.Circle(frame, new Point((int)circle.Center.X, (int)circle.Center.Y), (int)circle.Radius, new MCvScalar(0, 0, 255), 2);
                 CvInvoke.Circle(frame, new Point((int)circle.Center.X, (int)circle.Center.Y), 3, new MCvScalar(0, 255, 0), -1);
             }
 
             ibOriginal.Image = frame; //frame with detected ball
+        }
+
+        public bool wasGoal(String filePath)
+        {
+            if (filePath.Contains("0012"))
+                return true;
+            else
+                return false;
         }
 
         private void OutputScore()
