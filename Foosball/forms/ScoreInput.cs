@@ -13,7 +13,6 @@ namespace Foosball
 {
     public partial class ScoreInput : Form
     {
-
         private String Team1Name, Team2Name;
         private static string FILE_PATH = @"Data/Leaderboards.txt";
 
@@ -55,12 +54,12 @@ namespace Foosball
 
             if((xScore >= yScore && GoalsCount1 >= GoalsCount2) || (xScore <= yScore && GoalsCount1 <= GoalsCount2))
             {
-                result = (int) ((GoalsCount1 - GoalsCount2) * 50 * Math.Pow(0.999, xScore - yScore));
+                result = (int) (Math.Abs(GoalsCount1 - GoalsCount2) * 50 * Math.Pow(0.999, xScore - yScore));
 
             } else if((xScore < yScore && GoalsCount1 > GoalsCount2) || (xScore > yScore && GoalsCount1 < GoalsCount2)) {
-                result = (int)((GoalsCount1 - GoalsCount2) * 100 * Math.Pow(0.999, xScore - yScore));
-            } else{
-                result = 100 * Math.Abs(GoalsCount1 - GoalsCount2);
+                result = (int)(Math.Abs(GoalsCount1 - GoalsCount2) * 100 * Math.Pow(0.999, xScore - yScore));
+            } else {
+                result = 100;
             }
 
             if (GoalsCount1 > GoalsCount2) {

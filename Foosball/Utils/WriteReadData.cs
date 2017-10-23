@@ -15,9 +15,6 @@ namespace Foosball
         public static void updateResults(Team team1, Team team2, string filePath)
         {
             ICollection<Team> teams = ReadDataFromFile(filePath);
-            /*var newList = from i in teams
-                          where i.TeamName.Equals(team1.TeamName)
-                          select i;*/
             bool team1Added = false, team2Added = false;
             Console.WriteLine("Dydis: " + teams.Count);
             foreach(Team team in teams)
@@ -34,7 +31,6 @@ namespace Foosball
             }
             if (!team1Added) teams.Add(team1);
             if (!team2Added) teams.Add(team2);
-           // Console.WriteLine()
             WriteDataToFile(teams, filePath);
         }
 
@@ -42,15 +38,11 @@ namespace Foosball
         {
             string line, path = Path.Combine(Path.GetDirectoryName(Assembly.GetExecutingAssembly().Location), filePath);
 
-           // File.WriteAllText(path, String.Empty);
-
             if (!File.Exists(path)) {
                 File.WriteAllText(path, String.Empty);
-                Console.WriteLine("Suveike, kad failas neegzistuoja");
             }
 
-            File.AppendAllText(path, "");
-
+            File.WriteAllText(path, String.Empty);
 
             foreach (Team team in teams)
             {
