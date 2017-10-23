@@ -49,7 +49,7 @@ namespace Foosball
             this.goalsCount1 = Int32.Parse(TextBoxGoalsCount1.Text);
             this.goalsCount2 = Int32.Parse(TextBoxGoalsCount2.Text);
 
-            SaveData.SaveDataToFile(team1Name, team2Name, goalsCount1, goalsCount2);
+           // WriteReadData.SaveDataToFile(team1Name, team2Name, goalsCount1, goalsCount2);
 
             Start_Screen StartScreen = new Start_Screen();
             this.Hide();

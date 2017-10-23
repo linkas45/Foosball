@@ -9,12 +9,12 @@ using System.Windows.Forms;
 
 namespace Foosball
 {
-    public class SaveData
+    public class WriteReadData
     {
     
-        public static void SaveDataToFile(string team1Name, string team2Name, int team1Score, int team2Score)
+        public static void WriteDataToFile(string team1Name, string team2Name, int team1Score, int team2Score, string filePath)
         {
-            string path = Path.Combine(Path.GetDirectoryName(Assembly.GetExecutingAssembly().Location), @"Data\Leaderboards.txt");
+            string path = Path.Combine(Path.GetDirectoryName(Assembly.GetExecutingAssembly().Location), filePath);
 
             if (!File.Exists(path))
                 File.WriteAllText(path, String.Empty);
@@ -32,6 +32,18 @@ namespace Foosball
                 MessageBox.Show("File is read only");
             }
 
+        }
+
+        public static IEnumerable<String> ReadDataFromFile(string filePath)
+        {
+            string path = Path.Combine(Path.GetDirectoryName(Assembly.GetExecutingAssembly().Location), filePath);
+
+            if (!File.Exists(path))
+                File.WriteAllText(path, String.Empty);
+
+            var lines = File.ReadLines(path);
+
+            return lines;
         }
 
     }

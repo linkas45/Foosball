@@ -47,6 +47,7 @@
             this.Controls.Add(this.listBox1);
             this.Name = "Leaderboards";
             this.Text = "Leaderboards";
+            this.Load += new System.EventHandler(this.Leaderboards_Load);
             this.ResumeLayout(false);
 
         }

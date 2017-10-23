@@ -57,7 +57,7 @@
     </Reference>
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="SaveData.cs" />
+    <Compile Include="WriteReadData.cs" />
     <Compile Include="Counting Goals.cs">
       <SubType>Form</SubType>
     </Compile>
