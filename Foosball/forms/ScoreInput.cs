@@ -6,6 +6,7 @@ using System.Drawing;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using Foosball.Utils;
 using System.Windows.Forms;
 
 namespace Foosball
@@ -49,7 +50,9 @@ namespace Foosball
             this.goalsCount1 = Int32.Parse(TextBoxGoalsCount1.Text);
             this.goalsCount2 = Int32.Parse(TextBoxGoalsCount2.Text);
 
-           // WriteReadData.SaveDataToFile(team1Name, team2Name, goalsCount1, goalsCount2);
+            Team team1 = new Team("Laba", 24);
+            Team team2 = new Team("Labssa", 245);
+            WriteReadData.updateResults(team1, team2, @"Data/Leaderboards.txt");
 
             Start_Screen StartScreen = new Start_Screen();
             this.Hide();

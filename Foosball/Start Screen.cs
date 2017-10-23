@@ -54,9 +54,7 @@ namespace Foosball
             }
             else
             {
-                Counting_Goals countingGoals = new Counting_Goals();
-                this.Team1Name = TextBoxTeam1NameInput.Text;
-                this.Team2Name = TextBoxTeam2NameInput.Text;
+                Counting_Goals countingGoals = new Counting_Goals(TextBoxTeam1NameInput.Text, TextBoxTeam2NameInput.Text);
                 this.Hide();
                 countingGoals.Show();
             }
