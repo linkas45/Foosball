@@ -14,23 +14,22 @@ namespace Foosball
     public partial class ScoreInput : Form
     {
 
-        Start_Screen StartScreen = new Start_Screen();
-        private int goalsCount1, goalsCount2;
-        private string team1Name, team2Name;
-        public ScoreInput(int goalsCnt1,int goalsCnt2)
+        private String Team1Name, Team2Name;
+        private static string FILE_PATH = @"Data/Leaderboards.txt";
+
+        public ScoreInput(int goalsCnt1, int goalsCnt2, String Team1Name, String Team2Name)
         {
             InitializeComponent();
             TextBoxGoalsCount1.AppendText(goalsCnt1.ToString());
             TextBoxGoalsCount2.AppendText(goalsCnt2.ToString());
+            this.Team1Name = Team1Name;
+            this.Team2Name = Team2Name;
         }
 
         private void ScoreInput_Load(object sender, EventArgs e)
         {
-
-            this.team1Name = StartScreen.Team1Name;
-            this.team2Name = StartScreen.Team2Name;
-            TextBoxTeamName1.AppendText(team1Name + ": ");
-            TextBoxTeamName2.AppendText(team2Name + ": ");
+            TextBoxTeamName1.AppendText(Team1Name + ": ");
+            TextBoxTeamName2.AppendText(Team2Name + ": ");
 
         }
 
@@ -45,14 +44,53 @@ namespace Foosball
 
         }
 
+        private void CalculateRanking(Team Team1, Team Team2, int GoalsCount1, int GoalsCount2)
+        {
+            if (Team1.GlobalScore == -1)
+                Team1.GlobalScore = 1000;
+            if (Team2.GlobalScore == -1)
+                Team2.GlobalScore = 1000;
+
+            int result, xScore = Team1.GlobalScore, yScore = Team2.GlobalScore;
+
+            if((xScore >= yScore && GoalsCount1 >= GoalsCount2) || (xScore <= yScore && GoalsCount1 <= GoalsCount2))
+            {
+                result = (int) ((GoalsCount1 - GoalsCount2) * 50 * Math.Pow(0.999, xScore - yScore));
+
+            } else if((xScore < yScore && GoalsCount1 > GoalsCount2) || (xScore > yScore && GoalsCount1 < GoalsCount2)) {
+                result = (int)((GoalsCount1 - GoalsCount2) * 100 * Math.Pow(0.999, xScore - yScore));
+            } else{
+                result = 100 * Math.Abs(GoalsCount1 - GoalsCount2);
+            }
+
+            if (GoalsCount1 > GoalsCount2) {
+                xScore += result;
+                yScore -= result;
+            } else if(GoalsCount1 < GoalsCount2) {
+                xScore -= result;
+                yScore += result;
+            } else {
+                xScore += result;
+                yScore += result;
+            }
+
+            if (xScore < 0) xScore = 0;
+            if (yScore < 0) yScore = 0;
+
+            Team1.GlobalScore = xScore;
+            Team2.GlobalScore = yScore;
+            WriteReadData.updateResults(Team1, Team2, FILE_PATH);
+        }
+
         private void SubmitButton_Click(object sender, EventArgs e)
         {
-            this.goalsCount1 = Int32.Parse(TextBoxGoalsCount1.Text);
-            this.goalsCount2 = Int32.Parse(TextBoxGoalsCount2.Text);
+            int goalsCount1 = Int32.Parse(TextBoxGoalsCount1.Text);
+            int goalsCount2 = Int32.Parse(TextBoxGoalsCount2.Text);
 
-            Team team1 = new Team("Laba", 24);
-            Team team2 = new Team("Labssa", 245);
-            WriteReadData.updateResults(team1, team2, @"Data/Leaderboards.txt");
+            Team team1 = WriteReadData.getTeam(Team1Name, FILE_PATH);
+            Team team2 = WriteReadData.getTeam(Team2Name, FILE_PATH);
+
+            CalculateRanking(team1, team2, goalsCount1, goalsCount2);
 
             Start_Screen StartScreen = new Start_Screen();
             this.Hide();

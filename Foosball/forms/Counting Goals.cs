@@ -5,6 +5,7 @@ using System;
 using System.Drawing;
 using System.Windows.Forms;
 using System.Threading;
+using Foosball.Utils;
 
 namespace Foosball
 {
@@ -13,13 +14,12 @@ namespace Foosball
         private VideoCapture capture;
         private int goalsCountTeam1 = 0;
         private int goalsCountTeam2 = 0;
-        private string TeamName1;
-        private string TeamName2;
+        private String Team1Name, Team2Name;
 
-        public Counting_Goals(string TeamName1, string TeamName2)
+        public Counting_Goals(String Team1Name, String Team2Name)
         {
-            this.TeamName1 = TeamName1;
-            this.TeamName2 = TeamName2;
+            this.Team1Name = Team1Name;
+            this.Team2Name = Team2Name;
             InitializeComponent();
         }
 
@@ -131,7 +131,7 @@ namespace Foosball
             DialogResult dialogResult = MessageBox.Show("The game is finished! Do you want to exit?");
             if (dialogResult == DialogResult.OK)
             {
-                ScoreInput scoreInput = new ScoreInput(goalsCountTeam1, goalsCountTeam2);
+                ScoreInput scoreInput = new ScoreInput(goalsCountTeam1, goalsCountTeam2, Team1Name, Team2Name);
                 this.Hide();
                 scoreInput.Show();
                 Application.Idle -= ProcessFrameAndUpdateGUI;
@@ -144,12 +144,12 @@ namespace Foosball
             if (TextBoxGoalsTeam1.Text != "")
                 TextBoxGoalsTeam1.AppendText(Environment.NewLine);
 
-            TextBoxGoalsTeam1.AppendText(text: StartScreen.Team1Name + " " + goalsCountTeam1.ToString());
+            TextBoxGoalsTeam1.AppendText(text: Team1Name + " " + goalsCountTeam1.ToString());
 
             if (TextBoxGoalsTeam2.Text != "")
                 TextBoxGoalsTeam2.AppendText(Environment.NewLine);
 
-            TextBoxGoalsTeam2.AppendText(text: StartScreen.Team2Name + " "  + goalsCountTeam2.ToString());
+            TextBoxGoalsTeam2.AppendText(text: Team2Name + " "  + goalsCountTeam2.ToString());
 
         }
 

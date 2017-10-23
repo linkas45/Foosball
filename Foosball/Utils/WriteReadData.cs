@@ -12,29 +12,6 @@ namespace Foosball
 {
     public class WriteReadData
     {
-    
-        public static void WriteDataToFile(ICollection<Team> teams, string filePath)
-        {
-            string line, path = Path.Combine(Path.GetDirectoryName(Assembly.GetExecutingAssembly().Location), filePath);
-
-            if (!File.Exists(path))
-                File.WriteAllText(path, String.Empty);
-
-            foreach(Team team in teams)
-            {
-                line = team.TeamName + " " + team.GlobalScore.ToString() + " " + Environment.NewLine;
-                try
-                {
-                    File.AppendAllText(path, line);
-                }
-                catch (InvalidOperationException ReadOnly)
-                {
-                    MessageBox.Show("File is read only");
-                }
-            }
-            
-        }
-
         public static void updateResults(Team team1, Team team2, string filePath)
         {
             ICollection<Team> teams = ReadDataFromFile(filePath);
@@ -61,6 +38,35 @@ namespace Foosball
             WriteDataToFile(teams, filePath);
         }
 
+        public static void WriteDataToFile(ICollection<Team> teams, string filePath)
+        {
+            string line, path = Path.Combine(Path.GetDirectoryName(Assembly.GetExecutingAssembly().Location), filePath);
+
+           // File.WriteAllText(path, String.Empty);
+
+            if (!File.Exists(path)) {
+                File.WriteAllText(path, String.Empty);
+                Console.WriteLine("Suveike, kad failas neegzistuoja");
+            }
+
+            File.AppendAllText(path, "");
+
+
+            foreach (Team team in teams)
+            {
+                line = team.TeamName + " " + team.GlobalScore.ToString() + " " + Environment.NewLine;
+                try
+                {
+                    File.AppendAllText(path, line);
+                }
+                catch (InvalidOperationException ReadOnly)
+                {
+                    MessageBox.Show("File is read only");
+                }
+            }
+
+        }
+
         public static ICollection<Team> ReadDataFromFile(string filePath)
         {
             string path = Path.Combine(Path.GetDirectoryName(Assembly.GetExecutingAssembly().Location), filePath);
@@ -71,6 +77,7 @@ namespace Foosball
             var lines = File.ReadLines(path);
             ICollection<Team> teams = new List<Team>();
 
+            //possible Regex
             foreach (String line in lines)
             {
 
@@ -89,11 +96,20 @@ namespace Foosball
             return teams;
         }
 
-        public bool TeamIsOnTheList(Team team)
+        public static Team getTeam(String teamName, String filePath)
         {
+            ICollection<Team> teams = ReadDataFromFile(filePath);
+            if (teams != null) {
+                var team = (from i in teams
+                            where i.TeamName == teamName
+                            select i).ToList();
 
-
-            return true;
+                if (team.Count != 0) return team.ElementAt(0);
+                else return new Team(teamName, -1);
+            }
+            else {
+                return new Team(teamName, -1);
+            }
         }
 
     }

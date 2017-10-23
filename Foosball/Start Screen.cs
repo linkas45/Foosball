@@ -1,4 +1,5 @@
-﻿using System;
+﻿using Foosball.Utils;
+using System;
 using System.Collections.Generic;
 using System.ComponentModel;
 using System.Data;
@@ -12,19 +13,6 @@ namespace Foosball
 {
     public partial class Start_Screen : Form
     {
-        private static string team1Name;
-        public string Team1Name
-        {
-            get { return team1Name; }
-            set { team1Name = value; }
-        }
-
-        private static string team2Name;
-        public string Team2Name
-        {
-            get { return team2Name; }
-            set { team2Name = value; }
-        }
 
         public Start_Screen()
         {
