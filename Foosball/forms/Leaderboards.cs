@@ -19,5 +19,10 @@ namespace Foosball
             InitializeComponent();
 
         }
+
+        private void Leaderboards_Load(object sender, EventArgs e)
+        {
+
+        }
     }
 }

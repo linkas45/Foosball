@@ -2,26 +2,24 @@
 using Emgu.CV.CvEnum;
 using Emgu.CV.Structure;
 using System;
-using System.Collections.Generic;
-using System.ComponentModel;
-using System.Data;
 using System.Drawing;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 using System.Windows.Forms;
 using System.Threading;
+using Foosball.Utils;
 
 namespace Foosball
 {
     public partial class Counting_Goals : Form
     {
-        VideoCapture capture;
-        public int goalsCountTeam1 = 0;
-        public int goalsCountTeam2 = 0;
+        private VideoCapture capture;
+        private int goalsCountTeam1 = 0;
+        private int goalsCountTeam2 = 0;
+        private String Team1Name, Team2Name;
 
-        public Counting_Goals()
+        public Counting_Goals(String Team1Name, String Team2Name)
         {
+            this.Team1Name = Team1Name;
+            this.Team2Name = Team2Name;
             InitializeComponent();
         }
 
@@ -41,7 +39,19 @@ namespace Foosball
                 }
             }
             Application.Idle += ProcessFrameAndUpdateGUI;
+            /*
 
+            try
+            {
+                String videoDirectory = "./Resources/video_files/VID_20171020_093147.mp4";
+                capture = new VideoCapture(videoDirectory);
+            }
+            catch (FileNotFoundException exception)
+            {
+                Console.WriteLine("Video file \"" + exception.Message + "\" could not be opened");
+            }
+            Application.Idle += ProcessFrameAndUpdateGUI;
+            */
         }
 
         private void ProcessFrameAndUpdateGUI(object sender, EventArgs e)
@@ -52,7 +62,7 @@ namespace Foosball
 
             if (frame == null)
             {
-                Environment.Exit(0);
+                FinishGame();
                 return;
             }
 
@@ -61,7 +71,6 @@ namespace Foosball
             Mat imgThreshLow = new Mat(frame.Size, DepthType.Cv8U, 1);
             Mat imgThreshHigh = new Mat(frame.Size, DepthType.Cv8U, 1);
             Mat imgThresh = new Mat(frame.Size, DepthType.Cv8U, 1);
-
 
             CvInvoke.CvtColor(frame, imgHSV, ColorConversion.Bgr2Hsv); //frame converted from BGR to HSV
 
@@ -79,12 +88,8 @@ namespace Foosball
             CvInvoke.Dilate(imgThresh, imgThresh, structuringElement, new Point(-1, -1), 1, BorderType.Default, new MCvScalar(0, 0, 0));
             CvInvoke.Erode(imgThresh, imgThresh, structuringElement, new Point(-1, -1), 1, BorderType.Default, new MCvScalar(0, 0, 0));
 
-
-
             //finding circle/ball
             CircleF[] circles = CvInvoke.HoughCircles(imgThresh, HoughType.Gradient, 2.0, imgThresh.Rows / 4, 100, 30, 8, 50);
-
-
 
 
             foreach (CircleF circle in circles) //drawing circle and writing XYRadius
@@ -94,23 +99,23 @@ namespace Foosball
                     textBoxXY.AppendText(Environment.NewLine);
                 }
 
-                if ( 1790 <= circle.Center.X  && circle.Center.X <= 1810 && 450 <= circle.Center.Y && circle.Center.Y <= 500)
+                if (920 <= circle.Center.X && circle.Center.X <= 930 && 250 <= circle.Center.Y && circle.Center.Y <= 260)
                 {
                     goalsCountTeam1++;
                     textBoxXY.AppendText("Goal for Team 1");
                     textBoxXY.ScrollToCaret();
                 }
-                else if (70 <= circle.Center.X && circle.Center.X <= 80 && 450 <= circle.Center.X && circle.Center.Y <= 500)
+                /*else if (70 <= circle.Center.X && circle.Center.X <= 80 && 450 <= circle.Center.X && circle.Center.Y <= 500)
                 {
                     goalsCountTeam2++;
                     textBoxXY.AppendText("Goal for Team 2");
                     textBoxXY.ScrollToCaret();
-                }
+                }*/
                 else
                 {
-                textBoxXY.AppendText("ball position x = " + circle.Center.X.ToString().PadLeft(4) + ", y = " + circle.Center.Y.ToString().PadLeft(4) + ", radius = " + circle.Radius.ToString("###.000").PadLeft(7));
-               // textBoxXY.AppendText("distance to goal x:" + (927 - circle.Center.X) + "distance to goal y:" + (257 - circle.Center.Y));
-                textBoxXY.ScrollToCaret();
+                    textBoxXY.AppendText("ball position x = " + circle.Center.X.ToString().PadLeft(4) + ", y = " + circle.Center.Y.ToString().PadLeft(4) + ", radius = " + circle.Radius.ToString("###.000").PadLeft(7));
+                    // textBoxXY.AppendText("distance to goal x:" + (927 - circle.Center.X) + "distance to goal y:" + (257 - circle.Center.Y));
+                    textBoxXY.ScrollToCaret();
                 }
 
                 CvInvoke.Circle(frame, new Point((int)circle.Center.X, (int)circle.Center.Y), (int)circle.Radius, new MCvScalar(0, 0, 255), 2);
@@ -118,14 +123,19 @@ namespace Foosball
             }
 
             ibOriginal.Image = frame; //frame with detected ball
+            
         }
 
-        public bool wasGoal(String filePath)
+        private void FinishGame()
         {
-            if (filePath.Contains("0012"))
-                return true;
-            else
-                return false;
+            DialogResult dialogResult = MessageBox.Show("The game is finished! Do you want to exit?");
+            if (dialogResult == DialogResult.OK)
+            {
+                ScoreInput scoreInput = new ScoreInput(goalsCountTeam1, goalsCountTeam2, Team1Name, Team2Name);
+                this.Hide();
+                scoreInput.Show();
+                Application.Idle -= ProcessFrameAndUpdateGUI;
+            }
         }
 
         private void OutputScore()
@@ -134,13 +144,12 @@ namespace Foosball
             if (TextBoxGoalsTeam1.Text != "")
                 TextBoxGoalsTeam1.AppendText(Environment.NewLine);
 
-            TextBoxGoalsTeam1.AppendText(text: StartScreen.Team1Name + " " + goalsCountTeam1.ToString());
-
+            TextBoxGoalsTeam1.AppendText(text: Team1Name + " " + goalsCountTeam1.ToString());
 
             if (TextBoxGoalsTeam2.Text != "")
                 TextBoxGoalsTeam2.AppendText(Environment.NewLine);
 
-            TextBoxGoalsTeam2.AppendText(text: StartScreen.Team2Name + " "  + goalsCountTeam2.ToString());
+            TextBoxGoalsTeam2.AppendText(text: Team2Name + " "  + goalsCountTeam2.ToString());
 
         }
 
@@ -151,18 +160,13 @@ namespace Foosball
 
         private void EndGame_Click(object sender, EventArgs e)
         {
-            ScoreInput scoreInput = new ScoreInput(goalsCountTeam1, goalsCountTeam2);
-            this.Hide();
-            scoreInput.Show();
-
+            FinishGame();
         }
 
         private void textBox1_TextChanged(object sender, EventArgs e)
         {
 
         }
-
-
 
         private void PBGoalPlus1_Click(object sender, EventArgs e)
         {

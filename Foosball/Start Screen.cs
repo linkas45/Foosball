@@ -1,4 +1,5 @@
-﻿using System;
+﻿using Foosball.Utils;
+using System;
 using System.Collections.Generic;
 using System.ComponentModel;
 using System.Data;
@@ -12,19 +13,6 @@ namespace Foosball
 {
     public partial class Start_Screen : Form
     {
-        private static string team1Name;
-        public string Team1Name
-        {
-            get { return team1Name; }
-            set { team1Name = value; }
-        }
-
-        private static string team2Name;
-        public string Team2Name
-        {
-            get { return team2Name; }
-            set { team2Name = value; }
-        }
 
         public Start_Screen()
         {
@@ -54,9 +42,7 @@ namespace Foosball
             }
             else
             {
-                Counting_Goals countingGoals = new Counting_Goals();
-                this.Team1Name = TextBoxTeam1NameInput.Text;
-                this.Team2Name = TextBoxTeam2NameInput.Text;
+                Counting_Goals countingGoals = new Counting_Goals(TextBoxTeam1NameInput.Text, TextBoxTeam2NameInput.Text);
                 this.Hide();
                 countingGoals.Show();
             }
