@@ -1,4 +1,5 @@
 ﻿namespace Foosball.Utils
+
 {
     public class Team
     {
