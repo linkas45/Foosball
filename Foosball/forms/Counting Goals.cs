@@ -16,6 +16,9 @@ namespace Foosball
         private int goalsCountTeam2 = 0;
         private String Team1Name, Team2Name;
 
+        //Constants (will be refactored later)
+        private static string MESSAGE_TEXT = "The game is finished! Do you want to exit?";
+
         public Counting_Goals(String Team1Name, String Team2Name)
         {
             this.Team1Name = Team1Name;
@@ -39,19 +42,7 @@ namespace Foosball
                 }
             }
             Application.Idle += ProcessFrameAndUpdateGUI;
-            /*
 
-            try
-            {
-                String videoDirectory = "./Resources/video_files/VID_20171020_093147.mp4";
-                capture = new VideoCapture(videoDirectory);
-            }
-            catch (FileNotFoundException exception)
-            {
-                Console.WriteLine("Video file \"" + exception.Message + "\" could not be opened");
-            }
-            Application.Idle += ProcessFrameAndUpdateGUI;
-            */
         }
 
         private void ProcessFrameAndUpdateGUI(object sender, EventArgs e)
@@ -92,6 +83,7 @@ namespace Foosball
             CircleF[] circles = CvInvoke.HoughCircles(imgThresh, HoughType.Gradient, 2.0, imgThresh.Rows / 4, 100, 30, 8, 50);
 
 
+            //to be improved in the future
             foreach (CircleF circle in circles) //drawing circle and writing XYRadius
             {
                 if (textBoxXY.Text != "")
@@ -128,7 +120,7 @@ namespace Foosball
 
         private void FinishGame()
         {
-            DialogResult dialogResult = MessageBox.Show("The game is finished! Do you want to exit?");
+            DialogResult dialogResult = MessageBox.Show(MESSAGE_TEXT);
             if (dialogResult == DialogResult.OK)
             {
                 ScoreInput scoreInput = new ScoreInput(goalsCountTeam1, goalsCountTeam2, Team1Name, Team2Name);

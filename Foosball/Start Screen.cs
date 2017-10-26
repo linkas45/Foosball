@@ -14,6 +14,8 @@ namespace Foosball
     public partial class Start_Screen : Form
     {
 
+        private static string ERROR_MESSAGE = "Enter your team names";
+
         public Start_Screen()
         {
             InitializeComponent();
@@ -38,7 +40,7 @@ namespace Foosball
         {
             if (TextBoxTeam1NameInput.Text == "" || TextBoxTeam2NameInput.Text == "")
             {
-                MessageBox.Show("Enter your team names");
+                MessageBox.Show(ERROR_MESSAGE);
             }
             else
             {
