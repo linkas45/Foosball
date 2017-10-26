@@ -99,18 +99,18 @@ namespace Foosball
                     textBoxXY.AppendText(Environment.NewLine);
                 }
 
-                if (920 <= circle.Center.X && circle.Center.X <= 930 && 250 <= circle.Center.Y && circle.Center.Y <= 260)
+                if (71 <= circle.Center.X && circle.Center.X <= 121 && 583 <= circle.Center.Y && circle.Center.Y <= 721)
                 {
                     goalsCountTeam1++;
                     textBoxXY.AppendText("Goal for Team 1");
                     textBoxXY.ScrollToCaret();
                 }
-                /*else if (70 <= circle.Center.X && circle.Center.X <= 80 && 450 <= circle.Center.X && circle.Center.Y <= 500)
+                else if (1697 <= circle.Center.X && circle.Center.X <= 1761 && 571 <= circle.Center.X && circle.Center.Y <= 651)
                 {
                     goalsCountTeam2++;
                     textBoxXY.AppendText("Goal for Team 2");
                     textBoxXY.ScrollToCaret();
-                }*/
+                }
                 else
                 {
                     textBoxXY.AppendText("ball position x = " + circle.Center.X.ToString().PadLeft(4) + ", y = " + circle.Center.Y.ToString().PadLeft(4) + ", radius = " + circle.Radius.ToString("###.000").PadLeft(7));
