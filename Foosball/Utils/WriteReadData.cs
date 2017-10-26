@@ -12,11 +12,12 @@ namespace Foosball
 {
     public class WriteReadData
     {
+        private static string FILE_ERROR = "File is read only";
+
         public static void updateResults(Team team1, Team team2, string filePath)
         {
-            ICollection<Team> teams = ReadDataFromFile(filePath);
+            List<Team> teams = ReadDataFromFile(filePath);
             bool team1Added = false, team2Added = false;
-            Console.WriteLine("Dydis: " + teams.Count);
             foreach(Team team in teams)
             {
                 if (team.TeamName.Equals(team1.TeamName))
@@ -34,7 +35,7 @@ namespace Foosball
             WriteDataToFile(teams, filePath);
         }
 
-        public static void WriteDataToFile(ICollection<Team> teams, string filePath)
+        public static void WriteDataToFile(List<Team> teams, string filePath)
         {
             string line, path = Path.Combine(Path.GetDirectoryName(Assembly.GetExecutingAssembly().Location), filePath);
 
@@ -44,7 +45,9 @@ namespace Foosball
 
             File.WriteAllText(path, String.Empty);
 
-            foreach (Team team in teams)
+            List<Team> SortedList = teams.OrderByDescending(x => x.GlobalScore).ToList();
+
+            foreach (Team team in SortedList)
             {
                 line = team.TeamName + " " + team.GlobalScore.ToString() + " " + Environment.NewLine;
                 try
@@ -53,13 +56,13 @@ namespace Foosball
                 }
                 catch (InvalidOperationException ReadOnly)
                 {
-                    MessageBox.Show("File is read only");
+                    MessageBox.Show(FILE_ERROR);
                 }
             }
 
         }
 
-        public static ICollection<Team> ReadDataFromFile(string filePath)
+        public static List<Team> ReadDataFromFile(string filePath)
         {
             string path = Path.Combine(Path.GetDirectoryName(Assembly.GetExecutingAssembly().Location), filePath);
 
@@ -67,7 +70,7 @@ namespace Foosball
                 File.WriteAllText(path, String.Empty);
 
             var lines = File.ReadLines(path);
-            ICollection<Team> teams = new List<Team>();
+            List<Team> teams = new List<Team>();
 
             //possible Regex
             foreach (String line in lines)
@@ -90,7 +93,7 @@ namespace Foosball
 
         public static Team getTeam(String teamName, String filePath)
         {
-            ICollection<Team> teams = ReadDataFromFile(filePath);
+            List<Team> teams = ReadDataFromFile(filePath);
             if (teams != null) {
                 var team = (from i in teams
                             where i.TeamName == teamName

@@ -28,23 +28,35 @@
         /// </summary>
         private void InitializeComponent()
         {
-            this.listBox1 = new System.Windows.Forms.ListBox();
+            this.leaderBoard = new System.Windows.Forms.ListView();
+            this.newGame = new System.Windows.Forms.Button();
             this.SuspendLayout();
             // 
-            // listBox1
+            // leaderBoard
             // 
-            this.listBox1.FormattingEnabled = true;
-            this.listBox1.Location = new System.Drawing.Point(13, 13);
-            this.listBox1.Name = "listBox1";
-            this.listBox1.Size = new System.Drawing.Size(429, 498);
-            this.listBox1.TabIndex = 0;
+            this.leaderBoard.Location = new System.Drawing.Point(-2, -1);
+            this.leaderBoard.Name = "leaderBoard";
+            this.leaderBoard.Size = new System.Drawing.Size(456, 486);
+            this.leaderBoard.TabIndex = 0;
+            this.leaderBoard.UseCompatibleStateImageBehavior = false;
+            // 
+            // newGame
+            // 
+            this.newGame.Location = new System.Drawing.Point(184, 491);
+            this.newGame.Name = "newGame";
+            this.newGame.Size = new System.Drawing.Size(75, 23);
+            this.newGame.TabIndex = 1;
+            this.newGame.Text = "New Game";
+            this.newGame.UseVisualStyleBackColor = true;
+            this.newGame.Click += new System.EventHandler(this.button1_Click);
             // 
             // Leaderboards
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(454, 526);
-            this.Controls.Add(this.listBox1);
+            this.Controls.Add(this.newGame);
+            this.Controls.Add(this.leaderBoard);
             this.Name = "Leaderboards";
             this.Text = "Leaderboards";
             this.Load += new System.EventHandler(this.Leaderboards_Load);
@@ -54,6 +66,7 @@
 
         #endregion
 
-        private System.Windows.Forms.ListBox listBox1;
+        private System.Windows.Forms.ListView leaderBoard;
+        private System.Windows.Forms.Button newGame;
     }
 }

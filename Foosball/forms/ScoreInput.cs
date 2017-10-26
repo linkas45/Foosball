@@ -1,11 +1,4 @@
 ﻿using System;
-using System.Collections.Generic;
-using System.ComponentModel;
-using System.Data;
-using System.Drawing;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 using Foosball.Utils;
 using System.Windows.Forms;
 
@@ -14,7 +7,15 @@ namespace Foosball
     public partial class ScoreInput : Form
     {
         private String Team1Name, Team2Name;
+
+        //Constants
         private static string FILE_PATH = @"Data/Leaderboards.txt";
+        private static int INITIAL_SCORE = 1000;
+        private static int NO_VALUE = -1;
+        private static double PROBABILITY_FOR_GEO_PROGRESSION = 0.999;
+        private static int AMOUNT_FOR_SCORE = 50;
+        private static int DEFAULT_RESULT = 100;
+        private static int ZERO_VALUE = 0;
 
         public ScoreInput(int goalsCnt1, int goalsCnt2, String Team1Name, String Team2Name)
         {
@@ -45,21 +46,21 @@ namespace Foosball
 
         private void CalculateRanking(Team Team1, Team Team2, int GoalsCount1, int GoalsCount2)
         {
-            if (Team1.GlobalScore == -1)
-                Team1.GlobalScore = 1000;
-            if (Team2.GlobalScore == -1)
-                Team2.GlobalScore = 1000;
+            if (Team1.GlobalScore == NO_VALUE)
+                Team1.GlobalScore = INITIAL_SCORE;
+            if (Team2.GlobalScore == NO_VALUE)
+                Team2.GlobalScore = INITIAL_SCORE;
 
             int result, xScore = Team1.GlobalScore, yScore = Team2.GlobalScore;
 
             if((xScore >= yScore && GoalsCount1 >= GoalsCount2) || (xScore <= yScore && GoalsCount1 <= GoalsCount2))
             {
-                result = (int) (Math.Abs(GoalsCount1 - GoalsCount2) * 50 * Math.Pow(0.999, xScore - yScore));
+                result = (int) (Math.Abs(GoalsCount1 - GoalsCount2) * AMOUNT_FOR_SCORE * Math.Pow(PROBABILITY_FOR_GEO_PROGRESSION, xScore - yScore));
 
             } else if((xScore < yScore && GoalsCount1 > GoalsCount2) || (xScore > yScore && GoalsCount1 < GoalsCount2)) {
-                result = (int)(Math.Abs(GoalsCount1 - GoalsCount2) * 100 * Math.Pow(0.999, xScore - yScore));
+                result = (int)(Math.Abs(GoalsCount1 - GoalsCount2) * AMOUNT_FOR_SCORE * 2 * Math.Pow(PROBABILITY_FOR_GEO_PROGRESSION, xScore - yScore));
             } else {
-                result = 100;
+                result = DEFAULT_RESULT;
             }
 
             if (GoalsCount1 > GoalsCount2) {
@@ -73,8 +74,8 @@ namespace Foosball
                 yScore += result;
             }
 
-            if (xScore < 0) xScore = 0;
-            if (yScore < 0) yScore = 0;
+            if (xScore < ZERO_VALUE) xScore = ZERO_VALUE;
+            if (yScore < ZERO_VALUE) yScore = ZERO_VALUE;
 
             Team1.GlobalScore = xScore;
             Team2.GlobalScore = yScore;
@@ -91,9 +92,10 @@ namespace Foosball
 
             CalculateRanking(team1, team2, goalsCount1, goalsCount2);
 
-            Start_Screen StartScreen = new Start_Screen();
+            //Start_Screen StartScreen = new Start_Screen();
+            Leaderboards leaderboards = new Leaderboards();
             this.Hide();
-            StartScreen.Show();
+            leaderboards.Show();
         }
     }
 }
