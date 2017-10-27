@@ -82,6 +82,7 @@ namespace Foosball
             //finding circle/ball
             CircleF[] circles = CvInvoke.HoughCircles(imgThresh, HoughType.Gradient, 2.0, imgThresh.Rows / 4, 100, 30, 8, 50);
 
+            //enum GoalName {Double = 2, Hattrick, Poker}; 
 
             //to be improved in the future
             foreach (CircleF circle in circles) //drawing circle and writing XYRadius
@@ -95,12 +96,14 @@ namespace Foosball
                 {
                     goalsCountTeam1++;
                     textBoxXY.AppendText("Goal for Team 1");
+                    //textBoxXY.AppendText(GoalName(goalsCountTeam1));
                     textBoxXY.ScrollToCaret();
                 }
-                else if (1697 <= circle.Center.X && circle.Center.X <= 1761 && 571 <= circle.Center.X && circle.Center.Y <= 651)
+                else if (1697 <= circle.Center.X && circle.Center.X <= 1758 && 571 <= circle.Center.X && circle.Center.Y <= 648)
                 {
                     goalsCountTeam2++;
                     textBoxXY.AppendText("Goal for Team 2");
+                    //textBoxXY.AppendText(GoalName(goalsCountTeam2));
                     textBoxXY.ScrollToCaret();
                 }
                 else
