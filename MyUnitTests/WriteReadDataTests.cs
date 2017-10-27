@@ -14,16 +14,16 @@ namespace MyUnitTests
     [TestClass]
     public class WriteReadDataTests
     {
-/*        [TestMethod]
+        [TestMethod]
         [ExpectedException (typeof(System.IO.DirectoryNotFoundException))]
         public void TestReadDataFromFile()
         {
             string filePath = @"Data/Leaderboards.txt";
             List<Team> teams = WriteReadData.ReadDataFromFile(filePath);
 
-        }*/
+        }
 
-/*
+
         [TestMethod]
         public void TestWriteDataToFile()
         {
@@ -47,6 +47,6 @@ namespace MyUnitTests
 
         }
 
-    */
+    
     }
 }
