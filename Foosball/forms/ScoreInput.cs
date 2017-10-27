@@ -44,7 +44,7 @@ namespace Foosball
 
         }
 
-        private void CalculateRanking(Team Team1, Team Team2, int GoalsCount1, int GoalsCount2)
+        public void CalculateRanking(ref Team Team1, ref Team Team2, int GoalsCount1, int GoalsCount2)
         {
             if (Team1.GlobalScore == NO_VALUE)
                 Team1.GlobalScore = INITIAL_SCORE;
@@ -90,7 +90,7 @@ namespace Foosball
             Team team1 = WriteReadData.getTeam(Team1Name, FILE_PATH);
             Team team2 = WriteReadData.getTeam(Team2Name, FILE_PATH);
 
-            CalculateRanking(team1, team2, goalsCount1, goalsCount2);
+            CalculateRanking(ref team1, ref team2, goalsCount1, goalsCount2);
 
             //Start_Screen StartScreen = new Start_Screen();
             Leaderboards leaderboards = new Leaderboards();
