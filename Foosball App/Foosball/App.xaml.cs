@@ -8,7 +8,7 @@ namespace Foosball
         {
             InitializeComponent();
 
-            MainPage = new FoosballPage();
+            MainPage = new NavigationPage(new NavigationMenu());
         }
 
         protected override void OnStart()
