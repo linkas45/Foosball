@@ -1,8 +1,5 @@
 ﻿using System;
 using Emgu.CV;
-using Emgu.CV.CvEnum;
-using Emgu.CV.Structure;
-using System.IO;
 
 namespace Foosball
 {
@@ -15,7 +12,7 @@ namespace Foosball
             this.capture = new VideoCapture(file);
         }
 
-        public Math GetFrame()
+        public Mat GetFrame()
         {
             return this.capture.QueryFrame();
         }
