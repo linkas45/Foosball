@@ -1,5 +1,44 @@
 ﻿<?xml version="1.0" encoding="UTF-8"?>
 <ContentPage xmlns="http://xamarin.com/schemas/2014/forms" xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml" x:Class="Foosball.NewGame">
 	<ContentPage.Content>
+        <StackLayout Margin="25">
+            <Label Text="Insert your team names"
+                   FontSize="25">
+            </Label>
+
+            <Entry Placeholder="Team 1 name"
+                   FontSize="25"
+                   Text=""
+                   x:Name="team1NameEntry"
+                   Margin="0, 20, 0, 0">
+            </Entry>
+
+            <Entry Placeholder="Team 2 name"
+                   FontSize="25"
+                   Text=""
+                   x:Name="team2NameEntry"
+                   Margin="0, 20, 0, 0">
+            </Entry>
+
+            <Button Text="Submit"
+                    FontSize="25"
+                    Margin="0, 20, 0, 0"
+                    Clicked="Button_Clicked">
+                
+            </Button>
+
+            <Label Text=""
+                   HorizontalOptions="Center"
+                   TextColor="Red"
+                   FontSize="25"
+                   Margin="0, 25, 0, 0"
+                   IsVisible="False"
+                   x:Name="emptyNameErrorLabel"></Label>
+            
+                   
+
+
+
+        </StackLayout>
 	</ContentPage.Content>
 </ContentPage>
