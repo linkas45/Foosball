@@ -1,25 +1,25 @@
 ﻿using System;
-using Emgu.CV;
+//using Emgu.CV;
 
 namespace Foosball
 {
     public class VideoFile
     {
-        public VideoCapture capture;
+        //public VideoCapture capture;
 
         public VideoFile(String file)
         {
-            this.capture = new VideoCapture(file);
+          //  this.capture = new VideoCapture(file);
         }
 
-        public Mat GetFrame()
-        {
-            return this.capture.QueryFrame();
-        }
+        //public Mat GetFrame()
+        //{
+        //    return this.capture.QueryFrame();
+        //}
 
         public void Dispose()
         {
-            this.capture.Stop();
+            //this.capture.Stop();
         }
     }
 }

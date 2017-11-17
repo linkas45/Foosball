@@ -9,13 +9,17 @@ using System.Diagnostics;
 using Xamarin.Forms;
 using Xamarin.Forms.Xaml;
 using System.Threading.Tasks;
+using System.Collections.Generic;
+using System.Linq;
+using System.Text;
+using System.Threading.Tasks;
+
 
 namespace Foosball
 {
-    [XamlCompilation(XamlCompilationOptions.Compile)]
-    public partial class ScoreInput : ContentPage
-    {
-
+	[XamlCompilation(XamlCompilationOptions.Compile)]
+	public partial class ScoreInput : ContentPage
+	{
         //Constants
         private static int INITIAL_SCORE = 1000;
         private static int NO_VALUE = -1;
@@ -23,21 +27,6 @@ namespace Foosball
         private static int AMOUNT_FOR_SCORE = 50;
         private static int DEFAULT_RESULT = 100;
         private static int ZERO_VALUE = 0;
-
-
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-
-using Xamarin.Forms;
-using Xamarin.Forms.Xaml;
-
-namespace Foosball
-{
-	[XamlCompilation(XamlCompilationOptions.Compile)]
-	public partial class ScoreInput : ContentPage
-	{
 
         public ScoreInput(int team1Score, int team2Score)
         {
@@ -55,11 +44,13 @@ namespace Foosball
         {
             int goalsCount1 = Int32.Parse(team1ScoreEntry.Text);
             int goalsCount2 = Int32.Parse(team2ScoreEntry.Text);
+            String team1 = t1Name.Text;
+            String team2 = t2Name.Text;
 
             await CalculateRanking(goalsCount1, goalsCount2);
+            await WriteReadData.updateMatchesAsync(team1 + " - " + team2 + " " + goalsCount1.ToString() + ":" + goalsCount2.ToString());
             await Navigation.PushAsync(new NavigationMenu());
         }
-
 
         public async Task CalculateRanking(int GoalsCount1, int GoalsCount2)
         {
