@@ -11,7 +11,6 @@ namespace Foosball.Utils
         public string TeamName { get; set; }
         public int GlobalScore { get; set; }
         public int Standing { get; set; }
-
         public Team(string teamName, int globalScore)
         {
             TeamName = teamName;

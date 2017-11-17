@@ -25,11 +25,19 @@ namespace Foosball
         private static int ZERO_VALUE = 0;
 
 
+using System.Collections.Generic;
+using System.Linq;
+using System.Text;
+using System.Threading.Tasks;
 
-        public ScoreInput()
-        {
-            InitializeComponent();
-        }
+using Xamarin.Forms;
+using Xamarin.Forms.Xaml;
+
+namespace Foosball
+{
+	[XamlCompilation(XamlCompilationOptions.Compile)]
+	public partial class ScoreInput : ContentPage
+	{
 
         public ScoreInput(int team1Score, int team2Score)
         {
@@ -48,10 +56,7 @@ namespace Foosball
             int goalsCount1 = Int32.Parse(team1ScoreEntry.Text);
             int goalsCount2 = Int32.Parse(team2ScoreEntry.Text);
 
-
-
             await CalculateRanking(goalsCount1, goalsCount2);
-
             await Navigation.PushAsync(new NavigationMenu());
         }
 
@@ -96,6 +101,5 @@ namespace Foosball
             Team2.GlobalScore = yScore;
             await WriteReadData.updateResultsAsync(Team1, Team2);
         }
-
     }
 }

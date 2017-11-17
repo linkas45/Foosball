@@ -21,7 +21,8 @@
                    Grid.Row="1"
                    FontSize="25"
                    Margin="0, 40, 0, 0"></Label>
-            <Entry Text=""
+
+            <Entry Text="Placeholder"
                    Grid.Row="2"
                    FontSize="25"
                    Keyboard="Numeric"
@@ -30,7 +31,8 @@
                    Grid.Row="3"
                    FontSize="25"
                    Margin="0, 40, 0, 0"></Label>
-            <Entry Text=""
+
+            <Entry Text="Placeholder"
                    Grid.Row="4"
                    FontSize="25"
                    Keyboard="Numeric"

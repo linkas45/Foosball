@@ -71,6 +71,7 @@
     </Compile>
     <Compile Include="Utils\Team.cs" />
     <Compile Include="Utils\WriteReadData.cs" />
+    <Compile Include="VideoFile.cs" />
     <Compile Include="WebService.xaml.cs">
       <DependentUpon>WebService.xaml</DependentUpon>
     </Compile>
@@ -90,6 +91,11 @@
     </Reference>
     <Reference Include="PCLStorage.Abstractions, Version=1.0.2.0, Culture=neutral, PublicKeyToken=286fe515a2c35b64, processorArchitecture=MSIL">
       <HintPath>..\packages\PCLStorage.1.0.2\lib\portable-net45+wp8+wpa81+win8+monoandroid+monotouch+Xamarin.iOS+Xamarin.Mac\PCLStorage.Abstractions.dll</HintPath>
+    <Reference Include="Emgu.CV.World.Android">
+      <HintPath>..\..\..\Emgu.CV.World.Android.dll</HintPath>
+    </Reference>
+    <Reference Include="Xamarin.Forms.Core">
+      <HintPath>..\packages\Xamarin.Forms.2.4.0.280\lib\portable-win+net45+wp80+win81+wpa81\Xamarin.Forms.Core.dll</HintPath>
     </Reference>
     <Reference Include="Xamarin.Forms.Core, Version=2.0.0.0, Culture=neutral, processorArchitecture=MSIL">
       <HintPath>..\packages\Xamarin.Forms.2.4.0.74863\lib\portable-win+net45+wp80+win81+wpa81\Xamarin.Forms.Core.dll</HintPath>
