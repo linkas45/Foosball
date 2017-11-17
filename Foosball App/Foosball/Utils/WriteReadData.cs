@@ -20,7 +20,7 @@ namespace Foosball.Utils
         public static async Task updateResultsAsync(Team team1, Team team2)
         {
             
-            List<Team> teams = await ReadDataFromFileAsync();
+            List<Team> teams = await ReadTeamsDataFromFileAsync();
             bool team1Added = false, team2Added = false;
             foreach (Team team in teams)
             {
@@ -37,10 +37,17 @@ namespace Foosball.Utils
             }
             if (!team1Added) teams.Add(team1);
             if (!team2Added) teams.Add(team2);
-            await WriteDataToFileAsync(teams);
+            await WriteTeamsDataToFileAsync(teams);
         }
 
-        public static async Task WriteDataToFileAsync(List<Team> teams)
+        public static async Task updateMatchesAsync(String match)
+        {
+            List<String> matches = await ReadMatchesDataFromFileAsync();
+            matches.Add(match);
+            await WriteMatchesDataToFileAsync(matches);
+        }
+
+        public static async Task WriteTeamsDataToFileAsync(List<Team> teams)
         {
             string line;
             List<Team> SortedList = teams.OrderByDescending(x => x.GlobalScore).ToList();
@@ -67,8 +74,34 @@ namespace Foosball.Utils
 
         }
 
+        public static async Task WriteMatchesDataToFileAsync(List<String> matches)
+        {
+            string line;
 
-        public static async Task<List<Team>> ReadDataFromFileAsync()
+            IFolder rootFolder = FileSystem.Current.LocalStorage;
+            IFolder dataFolder = await rootFolder.CreateFolderAsync("Data", CreationCollisionOption.OpenIfExists).ConfigureAwait(false);
+            IFile leaderboardsFile = await dataFolder.CreateFileAsync("History.txt", CreationCollisionOption.ReplaceExisting);
+
+            using (Stream streamToWrite = await leaderboardsFile.OpenAsync(FileAccess.ReadAndWrite))
+            {
+                streamToWrite.Position = streamToWrite.Length;
+
+                if (streamToWrite.CanWrite)
+                {
+                    foreach (String match in matches)
+                    {
+                        line = match + " " + Environment.NewLine;
+                        var bufferArray = Encoding.UTF8.GetBytes(line);
+                        await streamToWrite.WriteAsync(bufferArray, 0, bufferArray.Length);
+                    }
+                }
+
+            }
+
+        }
+
+
+        public static async Task<List<Team>> ReadTeamsDataFromFileAsync()
         {
             var text = "";
             try
@@ -109,11 +142,51 @@ namespace Foosball.Utils
                 }
             return teams;
         }
-        
+
+        public static async Task<List<String>> ReadMatchesDataFromFileAsync()
+        {
+            var text = "";
+            try
+            {
+                IFolder rootFolder = FileSystem.Current.LocalStorage;
+                IFolder dataFolder = await rootFolder.CreateFolderAsync("Data", CreationCollisionOption.OpenIfExists).ConfigureAwait(false);
+                IFile historyFile = await dataFolder.CreateFileAsync("History.txt", CreationCollisionOption.OpenIfExists);
+                text = await historyFile.ReadAllTextAsync();
+            }
+
+            catch (Exception ex)
+            {
+                Debug.WriteLine(ex);
+            }
+
+            List<String> matches = new List<String>();
+            if (text.Equals(string.Empty))
+                return matches;
+
+
+            string[] linesToSplit = Regex.Split(text, "\\s+");
+            int matchesNumber = linesToSplit.Length;
+
+            for (int i = 0; i < matchesNumber - 1; i++)
+            {
+                try
+                {
+                    var match = linesToSplit[i];
+                    matches.Add(match);
+
+                }
+                catch (FormatException e)
+                {
+                    Debug.WriteLine(e);
+                }
+            }
+            return matches;
+        }
+
 
         public static async Task<Team> getTeamAsync(String teamName)
         {
-            List<Team> teams = await ReadDataFromFileAsync();
+            List<Team> teams = await ReadTeamsDataFromFileAsync();
             if (teams != null)
             {
                 var team = (from i in teams

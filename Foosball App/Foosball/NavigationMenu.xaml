@@ -4,7 +4,7 @@
 
     <Button Text="Start New Game" Clicked="OnNewGameClicked" />
     <Button Text="Leaderboards" Clicked="OnLeaderboardsClicked"/>
-    <Button Text="Web Service" Clicked="OnWebServiceClicked" />
+    <Button Text="History" Clicked="OnHistoryClicked" />
     <Button Text="About" Clicked="OnAboutClicked"/>
 
     </StackLayout>
