@@ -2,6 +2,7 @@
 using System.Diagnostics;
 using System;
 
+
 namespace Foosball
 {
     public partial class NavigationMenu : ContentPage
@@ -9,6 +10,7 @@ namespace Foosball
         public NavigationMenu()
         {
             InitializeComponent();
+
 
         }
         void OnNewGameClicked(object sender, EventArgs args)

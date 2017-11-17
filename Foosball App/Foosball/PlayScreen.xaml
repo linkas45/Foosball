@@ -3,7 +3,6 @@
              xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
              x:Class="Foosball.PlayScreen"
              NavigationPage.HasNavigationBar="False">
-             
     <ContentPage.Content>
         <Grid RowSpacing ="0">
             <Grid.RowDefinitions>
@@ -13,7 +12,6 @@
                 <RowDefinition Height="AUTO"/>
                 <RowDefinition Height="AUTO"/>
             </Grid.RowDefinitions>
-            
             <!--Teams scores-->
             <Grid Grid.Row="0" ColumnSpacing="0" HeightRequest="50">
                 <Grid.ColumnDefinitions>
@@ -48,7 +46,6 @@
 
             </Grid>
             
-            
             <!--Video screen-->
             <!--ToDo Add Video screen for playback-->
             <BoxView BackgroundColor="Blue" Grid.Row="1"></BoxView>
@@ -57,10 +54,9 @@
             <Button Text="End Game"
                     Grid.Row="3"
                     Clicked="Button_Clicked">
-                
             </Button>
-            
-            
-        </Grid>
+
+                            
+                 </Grid>
     </ContentPage.Content>
 </ContentPage>

@@ -19,7 +19,6 @@ namespace Foosball
             team1Score.Text = 0.ToString();  //ToDo
             team2Score.Text = 0.ToString();  //ToDo
 
-            
             //Creating TapGestureRecognizers  
             var tapImage = new TapGestureRecognizer();
             //Binding events  
