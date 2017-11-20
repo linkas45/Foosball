@@ -22,13 +22,13 @@ namespace Foosball
             //Creating TapGestureRecognizers  
             var tapImage = new TapGestureRecognizer();
             //Binding events  
-            tapImage.Tapped += tapImage_Tapped;
+            tapImage.Tapped += TapImage_Tapped;
             //Associating tap events to the image buttons  
             leaderboardsButton.GestureRecognizers.Add(tapImage);
         }
 
 
-        void tapImage_Tapped(object sender, EventArgs e)
+        void TapImage_Tapped(object sender, EventArgs e)
         {
             // handle the tap  
             Navigation.PushAsync(new LeaderBoards());

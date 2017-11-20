@@ -1,6 +1,6 @@
 ﻿using System;
-using System.Collections.Generic;
-using Foosball.Utils;
+using System.Diagnostics;
+using Foosball_dll.Utils;
 
 using Xamarin.Forms;
 
@@ -8,8 +8,6 @@ namespace Foosball
 {
     public partial class NewGame : ContentPage
     {
-        public static string Team1Name { get; set; }
-        public static string Team2Name { get; set; }
 
         public NewGame()
         {
@@ -21,9 +19,10 @@ namespace Foosball
         {
            
             if(NameChecking())
-            {
-                Team1Name = team1NameEntry.Text;
-                Team2Name = team2NameEntry.Text;
+            {   
+                
+                CurrentGameInfo.Team1Name = team1NameEntry.Text;
+                CurrentGameInfo.Team2Name = team2NameEntry.Text;
                 Navigation.PushAsync(new PlayScreen());
             }
         }
@@ -66,6 +65,5 @@ namespace Foosball
 
             return true;
         }
-
     }
 }

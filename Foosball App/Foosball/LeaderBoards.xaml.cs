@@ -1,9 +1,10 @@
 ﻿using System;
-using Foosball.Utils;
 using System.Collections.Generic;
+using Foosball_dll;
 
 using Xamarin.Forms;
 using System.Diagnostics;
+using Foosball_dll.Utils;
 
 namespace Foosball
 {
@@ -13,7 +14,7 @@ namespace Foosball
         public LeaderBoards()
         {
             this.Title = "Leaderboards"; //Toolbar text
-            getTeams();
+            GetTeams();
         }
 
         public void Layouts(List<Team> teams) {
@@ -77,10 +78,10 @@ namespace Foosball
             };
         }
 
-        async public void getTeams()
+        async public void GetTeams()
         {
-             List<Team> teams = new List<Team>();
-             teams = await WriteReadData.ReadTeamsDataFromFileAsync();
+            List<Team> teams = new List<Team>();
+            teams = await WriteReadData.ReadTeamsDataFromFileAsync();
 
             int i = 1;
             foreach(Team team in teams)

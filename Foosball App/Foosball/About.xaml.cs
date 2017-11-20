@@ -12,17 +12,16 @@ namespace Foosball
         {
             InitializeComponent();
 
-            test();
-
-            
+            Test();
 
         }
-        // Temporary button to erase leaderboards
-        public static async Task test()
+
+        public async void Test()
         {
             IFolder rootFolder = FileSystem.Current.LocalStorage;
             IFolder dataFolder = await rootFolder.CreateFolderAsync("Data", CreationCollisionOption.OpenIfExists).ConfigureAwait(false);
             IFile leaderboardsFile = await dataFolder.CreateFileAsync("Leaderboards.txt", CreationCollisionOption.ReplaceExisting);
+
         }
     }
 }
