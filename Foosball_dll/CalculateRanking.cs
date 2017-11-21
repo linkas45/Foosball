@@ -18,10 +18,12 @@ namespace Foosball_dll
         private static int DEFAULT_RESULT = 100;
         private static int ZERO_VALUE = 0;
 
+
+        //Calculating scores of each team from last game
         public static async void CalcRanking(int GoalsCount1, int GoalsCount2)
         {
-            int GlobalScore1 = await WriteReadData.getTeamScore(CurrentGameInfo.Team1Name);
-            int GlobalScore2 = await WriteReadData.getTeamScore(CurrentGameInfo.Team2Name);
+            int GlobalScore1 = await WriteReadData.GetTeamScore(CurrentGameInfo.Team1Name);
+            int GlobalScore2 = await WriteReadData.GetTeamScore(CurrentGameInfo.Team2Name);
 
             int[] scores = new int[2];
 
@@ -71,6 +73,8 @@ namespace Foosball_dll
             Team team1 = new Team(CurrentGameInfo.Team1Name, GlobalScore1);
             Team team2 = new Team(CurrentGameInfo.Team2Name, GlobalScore2);
 
+
+            //Update and write to file
             await WriteReadData.WriteTeamsDataToFileAsync(team1, team2);
 
         }
