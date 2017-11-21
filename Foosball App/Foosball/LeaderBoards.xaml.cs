@@ -83,6 +83,7 @@ namespace Foosball
             List<Team> teams = new List<Team>();
             teams = await WriteReadData.ReadTeamsDataFromFileAsync();
 
+
             int i = 1;
             foreach(Team team in teams)
             {

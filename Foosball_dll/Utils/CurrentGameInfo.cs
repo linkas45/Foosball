@@ -14,6 +14,5 @@ namespace Foosball_dll.Utils
         public static int Team1Score { get; set; }
         public static int Team2Score { get; set; }
 
-
     }
 }

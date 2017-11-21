@@ -13,13 +13,16 @@ namespace Foosball_dll
 {
     public class WriteReadData
     {
-        public static async Task<List<Team>> updateResultsAsync(Team team1, Team team2)
+
+        //Update leaderboards information with last game info
+        public static async Task<List<Team>> UpdateResultsAsync(Team team1, Team team2)
         {
             List<Team> teams = await ReadTeamsDataFromFileAsync();
 
             bool team1Added = false, team2Added = false;
             foreach (Team team in teams)
             {
+                //Searching for team to update
                 if (team.TeamName.Equals(team1.TeamName))
                 {
                     team.GlobalScore = team1.GlobalScore;
@@ -37,10 +40,14 @@ namespace Foosball_dll
             return teams;
         }
 
+
+        //Write leaderboards information to file
+        //Data in file form:
+        //Name:Score
         public static async Task WriteTeamsDataToFileAsync(Team team1, Team team2)
         {
 
-            List<Team> teams = await updateResultsAsync(team1, team2);
+            List<Team> teams = await UpdateResultsAsync(team1, team2);
             var leaderboardsFile = await SelectFile.GetDataWrite();
 
             string line;
@@ -65,6 +72,7 @@ namespace Foosball_dll
         }
 
 
+        //Read leaderboards information from file
         public static async Task<List<Team>> ReadTeamsDataFromFileAsync()
         {
             List<Team> teams = new List<Team>();
@@ -83,6 +91,7 @@ namespace Foosball_dll
             if (text.Equals(string.Empty))
                 return teams;
 
+            //Split lines into parts
             string[] linesToSplit = Regex.Split(text, ":|\n");
             int teamsNumber = linesToSplit.Length;
 
@@ -93,7 +102,6 @@ namespace Foosball_dll
                     var name = linesToSplit[i];
                     var score = linesToSplit[i + 1];
                     teams.Add(new Team(name, Int32.Parse(score)));
-
                 }
                 catch (FormatException e)
                 {
@@ -104,7 +112,8 @@ namespace Foosball_dll
         }
 
 
-        public static async Task<Team> getTeamAsync(String teamName)
+        //Get team information. Team name and global score
+        public static async Task<Team> GetTeamAsync(String teamName)
         {
             List<Team> teams= await ReadTeamsDataFromFileAsync();
             if (teams != null)
@@ -122,14 +131,17 @@ namespace Foosball_dll
             }
         }
 
-        public static async Task<int> getTeamScore(string teamName)
+        //Get team global score.
+        public static async Task<int> GetTeamScore(string teamName)
         {
-            Team team = await getTeamAsync(teamName);
+            Team team = await GetTeamAsync(teamName);
 
             return team.GlobalScore;
         }
 
-        public static async Task<List<string>> updateMatchesAsync(string match)
+
+        //Add match to history list
+        public static async Task<List<string>> UpdateMatchesAsync(string match)
         {
             List<string> matches = await ReadMatchesDataFromFileAsync();
             matches.Add(match);
@@ -137,10 +149,15 @@ namespace Foosball_dll
         }
 
 
+        //Write history data to file
         public static async Task WriteMatchesDataToFileAsync(string matchInfo)
         {
+            //Line to write
+            //Format:
+            //Name1 Name2 Score1:Score2
+            //ToDo change format, because this one breaks when names have space in them
             matchInfo = CurrentGameInfo.Team1Name + " " + CurrentGameInfo.Team2Name + " " + matchInfo;
-            List<string> Matches = await updateMatchesAsync(matchInfo);
+            List<string> Matches = await UpdateMatchesAsync(matchInfo);
             var historyFile = await SelectFile.GetMatchesWrite();
 
             string line;
@@ -163,6 +180,8 @@ namespace Foosball_dll
 
         }
 
+
+        //Read history data from file
         public static async Task<List<string>> ReadMatchesDataFromFileAsync()
         {
             List<string> matches = new List<string>();
@@ -181,6 +200,7 @@ namespace Foosball_dll
             if (text.Equals(string.Empty))
                 return matches;
 
+            //Split lines read to parse info
             string[] linesToSplit = Regex.Split(text, "\\s+");
             int matchesNumber = linesToSplit.Length;
 
@@ -188,10 +208,8 @@ namespace Foosball_dll
             {
                 try
                 {
-
                     var match = linesToSplit[i];
                     matches.Add(match);
-
                 }
                 catch (FormatException e)
                 {
@@ -200,8 +218,5 @@ namespace Foosball_dll
             }
             return matches;
         }
-
-
-
     }
 }
