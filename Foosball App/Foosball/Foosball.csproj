@@ -69,8 +69,6 @@
     <Compile Include="ScoreInput.xaml.cs">
       <DependentUpon>ScoreInput.xaml</DependentUpon>
     </Compile>
-    <Compile Include="Utils\Team.cs" />
-    <Compile Include="Utils\WriteReadData.cs" />
     <Compile Include="VideoFile.cs" />
     <Compile Include="About.xaml.cs">
       <DependentUpon>About.xaml</DependentUpon>
@@ -83,6 +81,9 @@
     </Compile>
   </ItemGroup>
   <ItemGroup>
+    <Reference Include="Foosball_dll">
+      <HintPath>C:\Users\Simonas\Documents\Visual Studio 2017\Projects\Foosball_dll\Foosball_dll\bin\Debug\Foosball_dll.dll</HintPath>
+    </Reference>
     <Reference Include="Newtonsoft.Json, Version=10.0.0.0, Culture=neutral, PublicKeyToken=30ad4fe6b2a6aeed, processorArchitecture=MSIL">
       <HintPath>..\packages\Newtonsoft.Json.10.0.3\lib\portable-net45+win8+wp8+wpa81\Newtonsoft.Json.dll</HintPath>
     </Reference>
