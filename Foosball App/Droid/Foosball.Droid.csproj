@@ -45,7 +45,11 @@
       <HintPath>..\packages\EMGU.CV.3.3.0.2824\lib\net35\Emgu.CV.UI.dll</HintPath>
     </Reference>
     <Reference Include="Emgu.CV.World.Android">
+<<<<<<< HEAD
       <HintPath>..\libs\Emgu.CV.World.Android.dll</HintPath>
+=======
+      <HintPath>..\packages\EMGU.CV.3.3.0.2824\lib\net35\Emgu.CV.World.Android.dll</HintPath>
+>>>>>>> 6d7fe747c8c8bd1f84c3bd5afb85190fe7b0f85d
     </Reference>
     <Reference Include="PCLStorage, Version=1.0.2.0, Culture=neutral, processorArchitecture=MSIL">
       <HintPath>..\packages\PCLStorage.1.0.2\lib\monoandroid\PCLStorage.dll</HintPath>
