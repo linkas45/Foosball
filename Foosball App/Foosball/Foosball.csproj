@@ -85,14 +85,8 @@
       <HintPath>..\packages\EMGU.CV.3.3.0.2824\lib\net35\Emgu.CV.UI.dll</HintPath>
     </Reference>
     <Reference Include="Emgu.CV.World.Android">
-      <HintPath>..\packages\EMGU.CV.3.3.0.2824\lib\net35\Emgu.CV.World.Android.dll</HintPath>
+      <HintPath>..\libs\Emgu.CV.World.Android.dll</HintPath>
     </Reference>
-<<<<<<< HEAD
-    <Reference Include="Emgu.CV.World.iOS">
-      <HintPath>..\packages\EMGU.CV.3.3.0.2824\lib\net35\Emgu.CV.World.iOS.dll</HintPath>
-    </Reference>
-=======
->>>>>>> b4e1b8cd2f8b28db72e88a463f6dda8ae267dbcb
     <Reference Include="Foosball_dll">
       <HintPath>C:\Users\Simonas\Documents\Visual Studio 2017\Projects\Foosball_dll\Foosball_dll\bin\Debug\Foosball_dll.dll</HintPath>
     </Reference>

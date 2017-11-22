@@ -1,6 +1,6 @@
 Microsoft Visual Studio Solution File, Format Version 12.00
 # Visual Studio 15
-VisualStudioVersion = 15.0.26730.16
+VisualStudioVersion = 15.0.27004.2009
 MinimumVisualStudioVersion = 10.0.40219.1
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Foosball", "Foosball\Foosball.csproj", "{832418B1-C9AA-4BB5-9A72-5E9FDBA696B9}"
 EndProject
@@ -8,7 +8,7 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Foosball.iOS", "iOS\Foosbal
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Foosball.Droid", "Droid\Foosball.Droid.csproj", "{9A7D366B-8922-48CD-B4E8-79F4BA584FB2}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Foosball_dll", "C:\Users\Simonas\Documents\Visual Studio 2017\Projects\Foosball_dll\Foosball_dll\Foosball_dll.csproj", "{46FB2C54-2C91-49DA-9149-6C109E2DCE23}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Foosball_dll", "..\Foosball_dll\Foosball_dll.csproj", "{46FB2C54-2C91-49DA-9149-6C109E2DCE23}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
