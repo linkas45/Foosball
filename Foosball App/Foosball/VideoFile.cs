@@ -1,11 +1,11 @@
 ﻿using System;
-using Emgu.CV;
+//using Emgu.CV;
 
 namespace Foosball
 {
     public class VideoFile
     {
-        public VideoCapture capture;
+       /* public VideoCapture capture;
 
         public VideoFile(String file)
         {
@@ -20,6 +20,6 @@ namespace Foosball
         public void Dispose()
         {
             this.capture.Stop();
-        }
+        }*/
     }
 }

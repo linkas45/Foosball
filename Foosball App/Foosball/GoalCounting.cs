@@ -1,7 +1,7 @@
 ﻿using System;
-using Emgu.CV;
-using Emgu.CV.CvEnum;
-using Emgu.CV.Structure;
+//using Emgu.CV;
+//using Emgu.CV.CvEnum;
+//using Emgu.CV.Structure;
 
 namespace Foosball
 {
@@ -13,7 +13,7 @@ namespace Foosball
         /// <param name="circles"></param>
         /// <param name="Team1Score"></param>
         /// <param name="Team2Score"></param>
-        public void IfGoalIncreaseScore(CircleF[] circles)
+        /*public void IfGoalIncreaseScore(CircleF[] circles)
         {
             foreach (CircleF circle in circles)
             { 
@@ -27,7 +27,7 @@ namespace Foosball
 
                 }
             }
-        }
+        }*/
            
     }
 }

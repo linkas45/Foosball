@@ -1,7 +1,7 @@
 ﻿using System;
-using Emgu.CV;
-using Emgu.CV.CvEnum;
-using Emgu.CV.Structure;
+//using Emgu.CV;
+//using Emgu.CV.CvEnum;
+//using Emgu.CV.Structure;
 
 namespace Foosball
 {
@@ -11,7 +11,7 @@ namespace Foosball
         /// Detects circle/ball in given frame
         /// </summary>
         /// <param name="frame"></param>
-        public static CircleF[] DetectBall(Mat frame)
+       /* public static CircleF[] DetectBall(Mat frame)
         {
             Mat imgHSV = new Mat(frame.Size, DepthType.Cv8U, 3);
 
@@ -40,6 +40,6 @@ namespace Foosball
             CircleF[] circles = CvInvoke.HoughCircles(imgThresh, HoughType.Gradient, 2.0, imgThresh.Rows / 4, 100, 30, 8, 50);
 
             return cirles;
-        }
+        }*/
     }
 }
