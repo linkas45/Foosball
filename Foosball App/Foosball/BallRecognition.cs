@@ -5,7 +5,7 @@ using Emgu.CV.Structure;
 
 namespace Foosball
 {
-    public static class BallRecognition
+    public class BallRecognition
     {
         /// <summary>
         /// Detects circle/ball in given frame

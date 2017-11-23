@@ -57,6 +57,7 @@
       <DependentUpon>App.xaml</DependentUpon>
     </Compile>
     <Compile Include="BallRecognition.cs" />
+    <Compile Include="GoalCounting.cs" />
     <Compile Include="PlayScreen.xaml.cs">
       <DependentUpon>PlayScreen.xaml</DependentUpon>
     </Compile>
