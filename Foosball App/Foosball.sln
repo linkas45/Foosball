@@ -8,8 +8,6 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Foosball.iOS", "iOS\Foosbal
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Foosball.Droid", "Droid\Foosball.Droid.csproj", "{9A7D366B-8922-48CD-B4E8-79F4BA584FB2}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Foosball_dll", "C:\Users\Simonas\Documents\Visual Studio 2017\Projects\Foosball_dll\Foosball_dll\Foosball_dll.csproj", "{46FB2C54-2C91-49DA-9149-6C109E2DCE23}"
-EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -58,18 +56,6 @@ Global
 		{9A7D366B-8922-48CD-B4E8-79F4BA584FB2}.Release|iPhone.Build.0 = Release|Any CPU
 		{9A7D366B-8922-48CD-B4E8-79F4BA584FB2}.Release|iPhoneSimulator.ActiveCfg = Release|Any CPU
 		{9A7D366B-8922-48CD-B4E8-79F4BA584FB2}.Release|iPhoneSimulator.Build.0 = Release|Any CPU
-		{46FB2C54-2C91-49DA-9149-6C109E2DCE23}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
-		{46FB2C54-2C91-49DA-9149-6C109E2DCE23}.Debug|Any CPU.Build.0 = Debug|Any CPU
-		{46FB2C54-2C91-49DA-9149-6C109E2DCE23}.Debug|iPhone.ActiveCfg = Debug|Any CPU
-		{46FB2C54-2C91-49DA-9149-6C109E2DCE23}.Debug|iPhone.Build.0 = Debug|Any CPU
-		{46FB2C54-2C91-49DA-9149-6C109E2DCE23}.Debug|iPhoneSimulator.ActiveCfg = Debug|Any CPU
-		{46FB2C54-2C91-49DA-9149-6C109E2DCE23}.Debug|iPhoneSimulator.Build.0 = Debug|Any CPU
-		{46FB2C54-2C91-49DA-9149-6C109E2DCE23}.Release|Any CPU.ActiveCfg = Release|Any CPU
-		{46FB2C54-2C91-49DA-9149-6C109E2DCE23}.Release|Any CPU.Build.0 = Release|Any CPU
-		{46FB2C54-2C91-49DA-9149-6C109E2DCE23}.Release|iPhone.ActiveCfg = Release|Any CPU
-		{46FB2C54-2C91-49DA-9149-6C109E2DCE23}.Release|iPhone.Build.0 = Release|Any CPU
-		{46FB2C54-2C91-49DA-9149-6C109E2DCE23}.Release|iPhoneSimulator.ActiveCfg = Release|Any CPU
-		{46FB2C54-2C91-49DA-9149-6C109E2DCE23}.Release|iPhoneSimulator.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
