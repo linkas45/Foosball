@@ -8,10 +8,10 @@ using Xamarin.Forms;
 
 namespace Foosball
 {
-    public partial class NewGame : ContentPage
+    public partial class Fantasy : ContentPage
     {
 
-        public NewGame()
+        public Fantasy()
         {
             InitializeComponent();
         }
