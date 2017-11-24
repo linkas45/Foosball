@@ -25,7 +25,7 @@ namespace Foosball
 
         public History(Team team)
         {
-            this.Title = "History";
+            this.Title = team.TeamName + " History";
             GetPlayerMatches(team);
         }
 
@@ -101,9 +101,9 @@ namespace Foosball
             List<MatchInfo> teamMatches = new List<MatchInfo>();
             matches = await _data.ReadMatchesDataFromFileAsync();
 
-            foreach(MatchInfo match in matches)
+            foreach (MatchInfo match in matches)
             {
-                if(match.Team1Name.Equals(team.TeamName) || match.Team2Name.Equals(team.TeamName))
+                if (match.Team1Name.Equals(team.TeamName) || match.Team2Name.Equals(team.TeamName))
                 {
                     teamMatches.Add(match);
                 }

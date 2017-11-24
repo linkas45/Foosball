@@ -51,9 +51,15 @@ namespace Foosball
                 })
             };
 
-
-
-
+            //Show history of selected team
+            listView.ItemSelected += async (sender, e) =>
+            {
+                if (listView.SelectedItem == null)
+                    return;
+                Team team = (Team)e.SelectedItem;
+                await Navigation.PushAsync(new History(team));
+                listView.SelectedItem = null;
+            };
 
             //Header template
 
@@ -80,21 +86,11 @@ namespace Foosball
                     listView
                 }
             };
-
-            //Show history of selected team
-            listView.ItemSelected += async (sender, e) =>
-            {
-                if (listView.SelectedItem == null)
-                    return;
-                Team team = (Team)e.SelectedItem;
-                await Navigation.PushAsync(new History(team));
-                listView.SelectedItem = null;
-            };
-
         }
 
         async public void GetTeams()
         {
+            Debug.WriteLine(_data);
             List<Team> teams = new List<Team>();
                 teams = await _data.ReadTeamsDataFromFileAsync();
 
@@ -106,8 +102,6 @@ namespace Foosball
             }
              Layouts(teams);
         }
-
-
 
     }
 }
