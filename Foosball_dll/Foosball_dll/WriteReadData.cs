@@ -9,6 +9,7 @@ using System.Text.RegularExpressions;
 using Foosball_dll.Utils;
 using Foosball_dll.Interfaces;
 using System.Diagnostics;
+using System.Threading;
 
 namespace Foosball_dll
 {
@@ -56,23 +57,35 @@ namespace Foosball_dll
             List<Team> teams = await UpdateResultsAsync(team1, team2);
             var leaderboardsFile = await _selectFile.GetDataWrite();
 
+
+
             string line;
             List<Team> SortedList = teams.OrderByDescending(x => x.GlobalScore).ToList();
 
-            using (Stream streamToWrite = await leaderboardsFile.OpenAsync(PCLStorage.FileAccess.ReadAndWrite))
+            Monitor.Enter(SortedList);
+
+            try
             {
-                streamToWrite.Position = streamToWrite.Length;
 
-                if (streamToWrite.CanWrite)
+                using (Stream streamToWrite = await leaderboardsFile.OpenAsync(PCLStorage.FileAccess.ReadAndWrite))
                 {
-                    foreach (Team team in SortedList)
-                    {
-                        line = team.TeamName + ":" + team.GlobalScore.ToString() +  Environment.NewLine;
-                        var bufferArray = Encoding.UTF8.GetBytes(line);
-                        await streamToWrite.WriteAsync(bufferArray, 0, bufferArray.Length);
-                    }
-                }
+                    streamToWrite.Position = streamToWrite.Length;
 
+                    if (streamToWrite.CanWrite)
+                    {
+                        foreach (Team team in SortedList)
+                        {
+                            line = team.TeamName + ":" + team.GlobalScore.ToString() + Environment.NewLine;
+                            var bufferArray = Encoding.UTF8.GetBytes(line);
+                            await streamToWrite.WriteAsync(bufferArray, 0, bufferArray.Length);
+                        }
+                    }
+
+                }
+            }
+            finally
+            {
+                Monitor.Exit(SortedList);
             }
 
         }

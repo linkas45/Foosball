@@ -17,7 +17,7 @@ namespace Foosball
             GetTeams();
         }
 
-        public void Layouts(List<Team> teams) {
+        private void Layouts(List<Team> teams) {
 
 
             // Create the ListView.
@@ -51,6 +51,8 @@ namespace Foosball
                 })
             };
 
+            listView.ItemSelected += ListView_ItemSelected;
+
             //Header template
 
             Grid header = new Grid();
@@ -76,6 +78,17 @@ namespace Foosball
                     listView
                 }
             };
+        }
+
+        private void ListView_ItemSelected(object sender, SelectedItemChangedEventArgs e)
+        {
+            if (e.SelectedItem == null)
+                return;
+
+            Team team = (Team)e.SelectedItem;
+
+            Debug.WriteLine(team.TeamName);
+            
         }
 
         async public void GetTeams()
