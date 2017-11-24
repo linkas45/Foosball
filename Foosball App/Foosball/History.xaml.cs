@@ -23,6 +23,12 @@ namespace Foosball
             GetMatches();
         }
 
+        public History(Team team)
+        {
+            this.Title = team.TeamName + " History";
+            GetPlayerMatches(team);
+        }
+
         public void Layouts(List<MatchInfo> Matches)
         {
 
@@ -87,6 +93,22 @@ namespace Foosball
             matches = await _data.ReadMatchesDataFromFileAsync();
             Layouts(matches);
                   
+        }
+
+        public async void GetPlayerMatches(Team team)
+        {
+            List<MatchInfo> matches = new List<MatchInfo>();
+            List<MatchInfo> teamMatches = new List<MatchInfo>();
+            matches = await _data.ReadMatchesDataFromFileAsync();
+
+            foreach (MatchInfo match in matches)
+            {
+                if (match.Team1Name.Equals(team.TeamName) || match.Team2Name.Equals(team.TeamName))
+                {
+                    teamMatches.Add(match);
+                }
+            }
+            Layouts(teamMatches);
         }
     }
 }

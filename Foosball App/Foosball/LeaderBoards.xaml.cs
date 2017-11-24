@@ -51,7 +51,15 @@ namespace Foosball
                 })
             };
 
-            listView.ItemSelected += ListView_ItemSelected;
+            //Show history of selected team
+            listView.ItemSelected += async (sender, e) =>
+            {
+                if (listView.SelectedItem == null)
+                    return;
+                Team team = (Team)e.SelectedItem;
+                await Navigation.PushAsync(new History(team));
+                listView.SelectedItem = null;
+            };
 
             //Header template
 
@@ -78,17 +86,6 @@ namespace Foosball
                     listView
                 }
             };
-        }
-
-        private void ListView_ItemSelected(object sender, SelectedItemChangedEventArgs e)
-        {
-            if (e.SelectedItem == null)
-                return;
-
-            Team team = (Team)e.SelectedItem;
-
-            Debug.WriteLine(team.TeamName);
-            
         }
 
         async public void GetTeams()
