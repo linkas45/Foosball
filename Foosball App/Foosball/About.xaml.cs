@@ -21,6 +21,7 @@ namespace Foosball
             IFolder rootFolder = FileSystem.Current.LocalStorage;
             IFolder dataFolder = await rootFolder.CreateFolderAsync("Data", CreationCollisionOption.OpenIfExists).ConfigureAwait(false);
             IFile leaderboardsFile = await dataFolder.CreateFileAsync("Leaderboards.txt", CreationCollisionOption.ReplaceExisting);
+            IFile historyFile = await dataFolder.CreateFileAsync("History.txt", CreationCollisionOption.ReplaceExisting);
 
         }
     }

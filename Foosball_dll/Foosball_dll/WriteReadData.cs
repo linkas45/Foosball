@@ -7,15 +7,22 @@ using PCLStorage;
 using System.IO;
 using System.Text.RegularExpressions;
 using Foosball_dll.Utils;
+using Foosball_dll.Interfaces;
 using System.Diagnostics;
+using System.Threading;
 
 namespace Foosball_dll
 {
-    public class WriteReadData
+    public class WriteReadData : IWriteReadData
     {
+        private ISelectFile _selectFile = new SelectFile();
+
+        public WriteReadData()
+        {
+        }
 
         //Update leaderboards information with last game info
-        public static async Task<List<Team>> UpdateResultsAsync(Team team1, Team team2)
+        private async Task<List<Team>> UpdateResultsAsync(Team team1, Team team2)
         {
             List<Team> teams = await ReadTeamsDataFromFileAsync();
 
@@ -44,39 +51,52 @@ namespace Foosball_dll
         //Write leaderboards information to file
         //Data in file form:
         //Name:Score
-        public static async Task WriteTeamsDataToFileAsync(Team team1, Team team2)
+        public async Task WriteTeamsDataToFileAsync(Team team1, Team team2)
         {
 
             List<Team> teams = await UpdateResultsAsync(team1, team2);
-            var leaderboardsFile = await SelectFile.GetDataWrite();
+            var leaderboardsFile = await _selectFile.GetDataWrite();
+
+
 
             string line;
             List<Team> SortedList = teams.OrderByDescending(x => x.GlobalScore).ToList();
 
-            using (Stream streamToWrite = await leaderboardsFile.OpenAsync(PCLStorage.FileAccess.ReadAndWrite))
+            Monitor.Enter(SortedList);
+
+            try
             {
-                streamToWrite.Position = streamToWrite.Length;
 
-                if (streamToWrite.CanWrite)
+                using (Stream streamToWrite = await leaderboardsFile.OpenAsync(PCLStorage.FileAccess.ReadAndWrite))
                 {
-                    foreach (Team team in SortedList)
-                    {
-                        line = team.TeamName + ":" + team.GlobalScore.ToString() +  Environment.NewLine;
-                        var bufferArray = Encoding.UTF8.GetBytes(line);
-                        await streamToWrite.WriteAsync(bufferArray, 0, bufferArray.Length);
-                    }
-                }
+                    streamToWrite.Position = streamToWrite.Length;
 
+                    if (streamToWrite.CanWrite)
+                    {
+                        foreach (Team team in SortedList)
+                        {
+                            line = team.TeamName + ":" + team.GlobalScore.ToString() + Environment.NewLine;
+                            var bufferArray = Encoding.UTF8.GetBytes(line);
+                            await streamToWrite.WriteAsync(bufferArray, 0, bufferArray.Length);
+                        }
+                    }
+
+                }
+            }
+            finally
+            {
+                Monitor.Exit(SortedList);
             }
 
         }
 
 
         //Read leaderboards information from file
-        public static async Task<List<Team>> ReadTeamsDataFromFileAsync()
+        public async Task<List<Team>> ReadTeamsDataFromFileAsync()
         {
+
             List<Team> teams = new List<Team>();
-            var leaderboardsFile = await SelectFile.GetDataRead();
+            var leaderboardsFile = await _selectFile.GetDataRead();
 
             string text = "";
             try
@@ -113,7 +133,7 @@ namespace Foosball_dll
 
 
         //Get team information. Team name and global score
-        public static async Task<Team> GetTeamAsync(String teamName)
+        public async Task<Team> GetTeamAsync(String teamName)
         {
             List<Team> teams= await ReadTeamsDataFromFileAsync();
             if (teams != null)
@@ -132,7 +152,7 @@ namespace Foosball_dll
         }
 
         //Get team global score.
-        public static async Task<int> GetTeamScore(string teamName)
+        public async Task<int> GetTeamScore(string teamName)
         {
             Team team = await GetTeamAsync(teamName);
 
@@ -141,24 +161,23 @@ namespace Foosball_dll
 
 
         //Add match to history list
-        public static async Task<List<string>> UpdateMatchesAsync(string match)
+        private async Task<List<MatchInfo>> UpdateMatchesAsync()
         {
-            List<string> matches = await ReadMatchesDataFromFileAsync();
-            matches.Add(match);
+            List<MatchInfo> matches = await ReadMatchesDataFromFileAsync();
+            matches.Add(new MatchInfo());
             return matches;
         }
 
 
         //Write history data to file
-        public static async Task WriteMatchesDataToFileAsync(string matchInfo)
+        public async Task WriteMatchesDataToFileAsync()
         {
             //Line to write
             //Format:
-            //Name1 Name2 Score1:Score2
-            //ToDo change format, because this one breaks when names have space in them
-            matchInfo = CurrentGameInfo.Team1Name + " " + CurrentGameInfo.Team2Name + " " + matchInfo;
-            List<string> Matches = await UpdateMatchesAsync(matchInfo);
-            var historyFile = await SelectFile.GetMatchesWrite();
+            //Name1::Name2::Score1:Score2
+
+            List<MatchInfo> Matches = await UpdateMatchesAsync();
+            var historyFile = await _selectFile.GetMatchesWrite();
 
             string line;
 
@@ -168,9 +187,9 @@ namespace Foosball_dll
 
                 if (streamToWrite.CanWrite)
                 {
-                    foreach (string match in Matches)
+                    foreach (MatchInfo match in Matches)
                     {
-                        line = match + " " + Environment.NewLine;
+                        line = match.Team1Name + "::" + match.Team2Name + "::" + match.Score + Environment.NewLine;
                         var bufferArray = Encoding.UTF8.GetBytes(line);
                         await streamToWrite.WriteAsync(bufferArray, 0, bufferArray.Length);
                     }
@@ -182,15 +201,17 @@ namespace Foosball_dll
 
 
         //Read history data from file
-        public static async Task<List<string>> ReadMatchesDataFromFileAsync()
+        public async Task<List<MatchInfo>> ReadMatchesDataFromFileAsync()
         {
-            List<string> matches = new List<string>();
-            var historyFile = await SelectFile.GetMatchesRead();
+            List<MatchInfo> matches = new List<MatchInfo>();
+            var historyFile = await _selectFile.GetMatchesRead();
+            var regexPattern = @"(.*)::(.*)::(.*)\n";
 
             string text = "";
             try
             {
                 text = await historyFile.ReadAllTextAsync();
+
             }
             
             catch (Exception ex)
@@ -201,22 +222,15 @@ namespace Foosball_dll
                 return matches;
 
             //Split lines read to parse info
-            string[] linesToSplit = Regex.Split(text, "\\s+");
-            int matchesNumber = linesToSplit.Length;
+            MatchCollection Matches = Regex.Matches(text, regexPattern);
 
-            for (int i = 0; i < matchesNumber - 1; i++)
+            foreach(Match match in Matches)
             {
-                try
-                {
-                    var match = linesToSplit[i];
-                    matches.Add(match);
-                }
-                catch (FormatException e)
-                {
-                    Debug.WriteLine(e);
-                }
+                matches.Add(new MatchInfo(match.Groups[1].Value, match.Groups[2].Value, match.Groups[3].Value));
             }
+
             return matches;
         }
+        
     }
 }
