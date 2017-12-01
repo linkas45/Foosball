@@ -1,23 +1,23 @@
 ﻿using System;
 using System.Collections.Generic;
 using Foosball_dll;
-
 using Xamarin.Forms;
 using System.Diagnostics;
 using Foosball_dll.Utils;
+using Foosball_dll.Interfaces;
 
 namespace Foosball
 {
     public partial class LeaderBoards : ContentPage
     {
-
+        private IWriteReadData _data = new WriteReadData();
         public LeaderBoards()
         {
             this.Title = "Leaderboards"; //Toolbar text
             GetTeams();
         }
 
-        public void Layouts(List<Team> teams) {
+        private void Layouts(List<Team> teams) {
 
 
             // Create the ListView.
@@ -51,6 +51,16 @@ namespace Foosball
                 })
             };
 
+            //Show history of selected team
+            listView.ItemSelected += async (sender, e) =>
+            {
+                if (listView.SelectedItem == null)
+                    return;
+                Team team = (Team)e.SelectedItem;
+                await Navigation.PushAsync(new History(team));
+                listView.SelectedItem = null;
+            };
+
             //Header template
 
             Grid header = new Grid();
@@ -80,9 +90,9 @@ namespace Foosball
 
         async public void GetTeams()
         {
+            Debug.WriteLine(_data);
             List<Team> teams = new List<Team>();
-            teams = await WriteReadData.ReadTeamsDataFromFileAsync();
-
+                teams = await _data.ReadTeamsDataFromFileAsync();
 
             int i = 1;
             foreach(Team team in teams)

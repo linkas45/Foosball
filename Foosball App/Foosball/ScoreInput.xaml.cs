@@ -1,15 +1,17 @@
 ﻿using System;
 using Foosball_dll;
-
+using Foosball_dll.Utils;
 using Xamarin.Forms;
 using Xamarin.Forms.Xaml;
+using Foosball_dll.Interfaces;
 
 namespace Foosball
 {
     [XamlCompilation(XamlCompilationOptions.Compile)]
     public partial class ScoreInput : ContentPage
     {
-
+        private IWriteReadData _data = new WriteReadData();
+        private ICalculateRanking _calcRanking = new CalculateRanking();
 
         public ScoreInput()
         {
@@ -25,21 +27,21 @@ namespace Foosball
             team2ScoreEntry.Text = team2Score.ToString();
 
             //Get team naems
-            t1Name.Text = Foosball_dll.Utils.CurrentGameInfo.Team1Name;
-            t2Name.Text = Foosball_dll.Utils.CurrentGameInfo.Team2Name;
+            t1Name.Text = CurrentGameInfo.Team1Name;
+            t2Name.Text = CurrentGameInfo.Team2Name;
 
         }
          
-        private void Button_Clicked(object sender, EventArgs e)
+        private async void Button_Clicked(object sender, EventArgs e)
         {
             //Parse scores
             int goalsCount1 = Int32.Parse(team1ScoreEntry.Text);
             int goalsCount2 = Int32.Parse(team2ScoreEntry.Text);
 
             //Update and write info of game to file for leaderboards and history
-            WriteReadData.WriteMatchesDataToFileAsync(goalsCount1.ToString() + ":" + goalsCount2.ToString());
-            CalculateRanking.CalcRanking(goalsCount1, goalsCount2);
-            Navigation.PushAsync(new NavigationMenu());
+            await _data.WriteMatchesDataToFileAsync();
+            _calcRanking.CalcRanking(goalsCount1, goalsCount2);
+            await Navigation.PushAsync(new NavigationMenu());
         }
 
     }

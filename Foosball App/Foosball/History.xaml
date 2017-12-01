@@ -3,8 +3,5 @@
              xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
              x:Class="Foosball.History">
     <ContentPage.Content>
-        <StackLayout>
-            <ListView x:Name="ListViewHistory"/>
-        </StackLayout>
     </ContentPage.Content>
 </ContentPage>

@@ -42,5 +42,10 @@ namespace Foosball
         {
             Navigation.PushAsync(new About());
         }
+
+        protected override bool OnBackButtonPressed()
+        {
+            return true;
+        }
     }
 }
