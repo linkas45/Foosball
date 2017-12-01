@@ -58,6 +58,12 @@
     </Compile>
     <Compile Include="BallRecognition.cs" />
     <Compile Include="GoalCounting.cs" />
+    <Compile Include="FantasyFoosball.xaml.cs">
+      <DependentUpon>FantasyFoosball.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Tournament.xaml.cs">
+      <DependentUpon>Tournament.xaml</DependentUpon>
+    </Compile>
     <Compile Include="PlayScreen.xaml.cs">
       <DependentUpon>PlayScreen.xaml</DependentUpon>
     </Compile>
@@ -135,7 +141,18 @@
       <SubType>Designer</SubType>
     </EmbeddedResource>
   </ItemGroup>
-  <ItemGroup />
+  <ItemGroup>
+    <EmbeddedResource Include="Tournament.xaml">
+      <Generator>MSBuild:UpdateDesignTimeXaml</Generator>
+      <SubType>Designer</SubType>
+    </EmbeddedResource>
+  </ItemGroup>
+  <ItemGroup>
+    <EmbeddedResource Include="FantasyFoosball.xaml">
+      <Generator>MSBuild:UpdateDesignTimeXaml</Generator>
+      <SubType>Designer</SubType>
+    </EmbeddedResource>
+  </ItemGroup>
   <Import Project="$(MSBuildExtensionsPath32)\Microsoft\Portable\$(TargetFrameworkVersion)\Microsoft.Portable.CSharp.targets" />
   <Import Project="..\packages\Xamarin.Forms.2.4.0.74863\build\portable-win+net45+wp80+win81+wpa81\Xamarin.Forms.targets" Condition="Exists('..\packages\Xamarin.Forms.2.4.0.74863\build\portable-win+net45+wp80+win81+wpa81\Xamarin.Forms.targets')" />
   <Target Name="EnsureNuGetPackageBuildImports" BeforeTargets="PrepareForBuild">

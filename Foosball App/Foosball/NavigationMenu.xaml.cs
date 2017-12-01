@@ -17,6 +17,18 @@ namespace Foosball
             Navigation.PushAsync(new NewGame());
         }
 
+        // Fantasy and Tournament
+        void OnTournamentClicked(object sender, EventArgs args)
+        {
+            Navigation.PushAsync(new Tournament());
+        }
+
+        void OnFantasyClicked(object sender, EventArgs args)
+        {
+            Navigation.PushAsync(new FantasyFoosball());
+        }
+        //
+
         void OnLeaderboardsClicked(object sender, EventArgs args)
         {
             Navigation.PushAsync(new LeaderBoards());
