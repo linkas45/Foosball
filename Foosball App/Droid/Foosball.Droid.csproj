@@ -41,6 +41,9 @@
     <AndroidUseSharedRuntime>false</AndroidUseSharedRuntime>
   </PropertyGroup>
   <ItemGroup>
+    <Reference Include="Foosball_dll">
+      <HintPath>..\..\Foosball_dll\Foosball_dll\bin\Debug\Foosball_dll.dll</HintPath>
+    </Reference>
     <Reference Include="PCLStorage, Version=1.0.2.0, Culture=neutral, processorArchitecture=MSIL">
       <HintPath>..\packages\PCLStorage.1.0.2\lib\monoandroid\PCLStorage.dll</HintPath>
     </Reference>
@@ -119,12 +122,7 @@
     </Reference>
   </ItemGroup>
   <ItemGroup>
-    <ProjectReference Include="..\Foosball\Foosball.csproj">
-      <Project>{832418B1-C9AA-4BB5-9A72-5E9FDBA696B9}</Project>
-      <Name>Foosball</Name>
-    </ProjectReference>
-  </ItemGroup>
-  <ItemGroup>
+    <Compile Include="App.cs" />
     <Compile Include="MainActivity.cs" />
     <Compile Include="Resources\Resource.designer.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />

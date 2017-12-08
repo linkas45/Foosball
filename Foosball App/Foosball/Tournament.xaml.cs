@@ -18,19 +18,15 @@ namespace Foosball
 
         }
 
-        public Boolean tournamentCreation = false;
-        
-        public void CreateNew()
-        {
-            void OnNewCreateClicked(object sender, EventArgs args)
-            {
-                Navigation.PushAsync(new CreateNew());
-            }
 
-            void OnStandingsClicked(object sender, EventArgs args)
-            {
+        void OnCreateNewClicked(object sender, EventArgs args)
+        {
+                Navigation.PushAsync(new CreateNewT());
+        }
+
+        void OnStandingsClicked(object sender, EventArgs args)
+        {
                 Navigation.PushAsync(new Standings());
-            }
         }
     }
 }
