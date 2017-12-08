@@ -20,17 +20,17 @@ namespace Foosball
 
         void OnMyTeamClicked(object sender, EventArgs args)
         {
-            //Navigation.PushAsync(new MyTeam());
+            Navigation.PushAsync(new MyTeam());
         }
 
         void OnNewTeamClicked(object sender, EventArgs args)
         {
-           // Navigation.PushAsync(new NewTeam());
+            Navigation.PushAsync(new NewTeam());
         }
 
         void OnRankingsClicked(object sender, EventArgs args)
         {
-           // Navigation.PushAsync(new Rankings());
+            Navigation.PushAsync(new Rankings());
         }
 
         // Points counting
