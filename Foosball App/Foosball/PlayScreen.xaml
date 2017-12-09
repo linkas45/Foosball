@@ -3,60 +3,90 @@
              xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
              x:Class="Foosball.PlayScreen"
              NavigationPage.HasNavigationBar="False">
+
     <ContentPage.Content>
-        <Grid RowSpacing ="0">
+
+        <Grid RowSpacing ="0" ColumnSpacing="0">
+
             <Grid.RowDefinitions>
-                <RowDefinition Height="AUTO"/>
+                <RowDefinition Height="50"/>
+                <RowDefinition Height="20"/>
+                <RowDefinition Height="30"/>
+                <RowDefinition Height="5"/>
                 <RowDefinition Height="*"/>
                 <RowDefinition Height="AUTO"/>
-                <RowDefinition Height="AUTO"/>
-                <RowDefinition Height="AUTO"/>
             </Grid.RowDefinitions>
+
+            <Grid.ColumnDefinitions>
+                <ColumnDefinition Width="120"/>
+                <ColumnDefinition Width="50"/>
+                <ColumnDefinition Width="120"/>
+                <ColumnDefinition Width="*"/>
+            </Grid.ColumnDefinitions>
+
             <!--Teams scores-->
-            <Grid Grid.Row="0" ColumnSpacing="0" HeightRequest="50">
-                <Grid.ColumnDefinitions>
-                    <ColumnDefinition Width="125"/>
-                    <ColumnDefinition Width="50"/>
-                    <ColumnDefinition Width="125"/>
-                    <ColumnDefinition Width="*"/>
-                </Grid.ColumnDefinitions>
+            <Label Text=""
+                   x:Name="team1Score"
+                   VerticalOptions="Center"
+                   HorizontalOptions="Center"
+                   Grid.Row="0"
+                   Grid.Column="0"
+                   FontSize="30"
+                   Margin="0, 5, 0, 0"/>
 
-                <Label Text=""
-                       x:Name="team1Score"
-                       VerticalOptions="Center"
-                       HorizontalOptions="Center"
-                       Grid.Column="0"
-                       FontSize="30"></Label>
-                <Label Text="-"
-                       VerticalOptions="Center"
-                       HorizontalOptions="Center"
-                       Grid.Column="1"
-                       FontSize="30"></Label>
-                <Label Text=""
-                       x:Name="team2Score"
-                       VerticalOptions="Center"
-                       HorizontalOptions="Center"
-                       Grid.Column="2"
-                       FontSize="30"
-                       ></Label>
-                <Image Source="Leaderboards.png"
-                       Aspect="AspectFit"
-                       Grid.Column="3"
-                       x:Name="leaderboardsButton"></Image>
+            <Label Text="-"
+                   VerticalOptions="Center"
+                   HorizontalOptions="Center"
+                   Grid.Row="0"
+                   Grid.Column="1"
+                   FontSize="30"
+                   Margin="0, 5, 0, 0"/>
 
-            </Grid>
-            
+            <Label Text=""
+                   x:Name="team2Score"
+                   VerticalOptions="Center"
+                   HorizontalOptions="Center"
+                   Grid.Row="0"
+                   Grid.Column="2"
+                   FontSize="30"
+                   Margin="0, 5, 0, 0"/>
+
+            <BoxView    HeightRequest="1"
+                        WidthRequest="280"
+                        BackgroundColor="#BDBDBD" 
+                        Grid.Row="1"
+                        Grid.Column="0"
+                        Grid.ColumnSpan="3"
+                        HorizontalOptions="Center" 
+                        VerticalOptions="Center"/>
+
+
+            <Image Source="Leaderboards.png"
+                   Grid.Row="0"
+                   Grid.RowSpan="3"
+                   Grid.Column="3"
+                   Aspect="AspectFit"
+                   x:Name="leaderboardsButton"/>
+
+
             <!--Video screen-->
             <!--ToDo Add Video screen for playback-->
-            <BoxView BackgroundColor="Blue" Grid.Row="1"></BoxView>
-            
-            <!--End game buton-->
-            <Button Text="End Game"
-                    Grid.Row="3"
-                    Clicked="Button_Clicked">
-            </Button>
+            <BoxView BackgroundColor="#26A69A"
+                     Grid.Row="4"
+                     Grid.Column="0"
+                     Grid.ColumnSpan="4"/>
 
-                            
-                 </Grid>
+            <!--End game buton-->
+
+            <Button Text="End Game"
+                    WidthRequest="150" 
+                    HeightRequest="40" 
+                    Grid.Row="5"
+                    Grid.Column="0"
+                    Grid.ColumnSpan="4"
+                    Margin="10, 10, 10, 10"
+                    Clicked="Button_Clicked"/>
+
+        </Grid>
     </ContentPage.Content>
 </ContentPage>
