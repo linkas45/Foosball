@@ -40,17 +40,19 @@
             </Grid.ColumnDefinitions>
 
             <Button     Style="{StaticResource aquaCircleButton}"
+                        Image="Ball_white.png" 
                         Grid.Row="1"
                         Grid.Column="1"
                         Clicked="OnNewGameClicked" />
 
-            <Label      Text="Star New Game"
+            <Label      Text="Start New Game"
                         FontSize="16"
                         HorizontalOptions="Center"
                         Grid.Row="2"
                         Grid.Column="1"/>
 
             <Button     Style="{StaticResource aquaCircleButton}"
+                        Image="Cup_white.png"
                         Grid.Row="1"
                         Grid.Column="2"
                         Clicked="OnLeaderboardsClicked"/>
@@ -62,6 +64,7 @@
                         Grid.Column="2"/>
 
             <Button     Style="{StaticResource aquaCircleButton}"
+                        Image="History_white.png"
                         Grid.Row="4"
                         Grid.Column="1"
                         Clicked="OnHistoryClicked"/>
@@ -73,6 +76,7 @@
                         Grid.Column="1"/>
 
             <Button     Style="{StaticResource aquaCircleButton}"
+                        Image="Info_white.png"
                         Grid.Row="4"
                         Grid.Column="2"
                         Clicked="OnAboutClicked"/>
