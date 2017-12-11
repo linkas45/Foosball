@@ -32,7 +32,7 @@
                    Grid.Row="0"
                    Grid.Column="0"
                    FontSize="30"
-                   Margin="0, 5, 0, 0"/>
+                   Margin="0, 10, 0, 0"/>
 
             <Label Text="-"
                    VerticalOptions="Center"
@@ -40,7 +40,7 @@
                    Grid.Row="0"
                    Grid.Column="1"
                    FontSize="30"
-                   Margin="0, 5, 0, 0"/>
+                   Margin="0, 10, 0, 0"/>
 
             <Label Text=""
                    x:Name="team2Score"
@@ -49,7 +49,7 @@
                    Grid.Row="0"
                    Grid.Column="2"
                    FontSize="30"
-                   Margin="0, 5, 0, 0"/>
+                   Margin="0, 10, 0, 0"/>
 
             <BoxView    HeightRequest="1"
                         WidthRequest="280"
@@ -58,23 +58,38 @@
                         Grid.Column="0"
                         Grid.ColumnSpan="3"
                         HorizontalOptions="Center" 
-                        VerticalOptions="Center"/>
+                        VerticalOptions="Center"
+                        Margin="10, 0, 0, 0"/>
 
 
-            <Image Source="Leaderboards.png"
+            <!-- <Image Source="Leaderboards.png"
                    Grid.Row="0"
                    Grid.RowSpan="3"
                    Grid.Column="3"
                    Aspect="AspectFit"
-                   x:Name="leaderboardsButton"/>
+                   x:Name="leaderboardsButton"/>-->
+
+            <Button BackgroundColor="#26A69A"
+                    WidthRequest="56"
+                    HeightRequest="56"
+                    BorderRadius="28"
+                    Image="Cup_white_50.png"
+                    HorizontalOptions="Center"
+                    VerticalOptions="Center"
+                    Grid.Row="0"
+                    Grid.RowSpan="2"
+                    Grid.Column="3"
+                    Clicked="LeaderboardsClicked"
+                />
 
 
             <!--Video screen-->
             <!--ToDo Add Video screen for playback-->
-            <BoxView BackgroundColor="#26A69A"
+            <BoxView BackgroundColor="#BDBDBD"
                      Grid.Row="4"
                      Grid.Column="0"
-                     Grid.ColumnSpan="4"/>
+                     Grid.ColumnSpan="4"
+                     Margin="10, 0, 10, 0"/>
 
             <!--End game buton-->
 
