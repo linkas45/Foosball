@@ -16,6 +16,7 @@ namespace Foosball
         {
             Navigation.PushAsync(new NewGame());
         }
+
         void OnLeaderboardsClicked(object sender, EventArgs args)
         {
             Navigation.PushAsync(new LeaderBoards());
