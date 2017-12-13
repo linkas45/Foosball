@@ -17,7 +17,8 @@ namespace Foosball
             GetTeams();
         }
 
-        private void Layouts(List<Team> teams) {
+        private void Layouts(List<Team> teams)
+        {
 
 
             // Create the ListView.
@@ -34,13 +35,13 @@ namespace Foosball
                     var grid = new Grid();
                     var standingLabel = new Label { VerticalTextAlignment = TextAlignment.Center };
                     var nameLabel = new Label { VerticalTextAlignment = TextAlignment.Center };
-                    var scoreLabel = new Label{VerticalTextAlignment = TextAlignment.Center };
+                    var scoreLabel = new Label { VerticalTextAlignment = TextAlignment.Center };
 
                     standingLabel.SetBinding(Label.TextProperty, "Standing");
                     nameLabel.SetBinding(Label.TextProperty, "TeamName");
                     scoreLabel.SetBinding(Label.TextProperty, "GlobalScore");
 
-                    grid.ColumnDefinitions.Add(new ColumnDefinition {Width = 30 });
+                    grid.ColumnDefinitions.Add(new ColumnDefinition { Width = 30 });
 
                     grid.Children.Add(standingLabel);
                     grid.Children.Add(nameLabel, 1, 0);
@@ -65,9 +66,9 @@ namespace Foosball
 
             Grid header = new Grid();
 
-            var standingHeader = new Label { Text = "#" };
-            var nameHeader = new Label { Text = "Team name" };
-            var scoreHeader = new Label { Text = "Score" };
+            var standingHeader = new Label { Text = "#", FontAttributes = FontAttributes.Bold };
+            var nameHeader = new Label { Text = "Team name", FontAttributes = FontAttributes.Bold };
+            var scoreHeader = new Label { Text = "Score", FontAttributes = FontAttributes.Bold };
 
             header.ColumnDefinitions.Add(new ColumnDefinition { Width = 30 });
 
@@ -92,15 +93,15 @@ namespace Foosball
         {
             Debug.WriteLine(_data);
             List<Team> teams = new List<Team>();
-                teams = await _data.ReadTeamsDataFromFileAsync();
+            teams = await _data.ReadTeamsDataFromFileAsync();
 
             int i = 1;
-            foreach(Team team in teams)
+            foreach (Team team in teams)
             {
                 team.Standing = i;
                 i++;
             }
-             Layouts(teams);
+            Layouts(teams);
         }
 
     }

@@ -1,45 +1,55 @@
 ﻿<?xml version="1.0" encoding="UTF-8"?>
 <ContentPage xmlns="http://xamarin.com/schemas/2014/forms" xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml" x:Class="Foosball.NewGame">
-	<ContentPage.Content>
-        <StackLayout Margin="25">
+    <ContentPage.Content>
+
+        <Grid Margin="20"
+              TranslationY="25">
+
+            <Grid.RowDefinitions>
+                <RowDefinition Height="AUTO"/>
+                <RowDefinition Height="AUTO"/>
+                <RowDefinition Height="AUTO"/>
+                <RowDefinition Height="AUTO"/>
+                <RowDefinition Height="AUTO"/>
+            </Grid.RowDefinitions>
+
+
             <Label Text="Insert your team names"
-                   FontSize="25">
-            </Label>
+                   FontSize="25"
+                   HorizontalOptions="Center"
+                   Grid.Row="0"/>
 
             <Entry Placeholder="Team 1 name"
-                   FontSize="25"
+                   FontSize="20"
                    Text=""
                    x:Name="team1NameEntry"
-                   Margin="0, 20, 0, 0">
-            </Entry>
+                   Margin="0, 40, 0, 0"
+                   Grid.Row="1"/>
 
             <Entry Placeholder="Team 2 name"
-                   FontSize="25"
+                   FontSize="20"
                    Text=""
                    x:Name="team2NameEntry"
-                   Margin="0, 20, 0, 0">
-            </Entry>
+                   Margin="0, 30, 0, 0"
+                   Grid.Row="2"/>
 
             <Button Text="Submit"
-                    FontSize="25"
+                    FontSize="20"
                     Margin="0, 20, 0, 0"
-                    Clicked="Button_Clicked">
-                
-            </Button>
+                    Grid.Row="3"
+                    Clicked="Button_Clicked"/>
 
 
             <Label Text=""
                    HorizontalOptions="Center"
                    TextColor="Red"
-                   FontSize="25"
-                   Margin="0, 25, 0, 0"
+                   FontSize="20"
+                   Margin="0, 20, 0, 0"
+                   Grid.Row="4"
                    IsVisible="False"
-                   x:Name="emptyNameErrorLabel"></Label>
-            
-                   
+                   x:Name="emptyNameErrorLabel"/>
 
 
-
-        </StackLayout>
-	</ContentPage.Content>
+        </Grid>
+    </ContentPage.Content>
 </ContentPage>

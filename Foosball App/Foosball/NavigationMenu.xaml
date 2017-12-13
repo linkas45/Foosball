@@ -1,12 +1,117 @@
 <?xml version="1.0" encoding="utf-8"?>
-<ContentPage xmlns="http://xamarin.com/schemas/2014/forms" xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml" xmlns:local="clr-namespace:Foosball" x:Class="Foosball.NavigationMenu">
-    <StackLayout VerticalOptions="Center">
+<ContentPage xmlns="http://xamarin.com/schemas/2014/forms"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml" 
+             xmlns:local="clr-namespace:Foosball" 
+             x:Class="Foosball.NavigationMenu">
 
-    <Button Text="Start New Game" Clicked="OnNewGameClicked" />
-    <Button Text="Leaderboards" Clicked="OnLeaderboardsClicked"/>
-    <Button Text="History" Clicked="OnHistoryClicked" />
-    <Button Text="About" Clicked="OnAboutClicked"/>
 
-    </StackLayout>
+    <ContentPage.Resources>
+        <ResourceDictionary>
+            <Style x:Key="aquaCircleButton" TargetType="Button">
+                <Setter Property="BackgroundColor" Value="#26A69A"/>
+                <Setter Property="WidthRequest" Value="60"/>
+                <Setter Property="HeightRequest" Value="60"/>
+                <Setter Property="BorderRadius" Value="30"/>
+                <Setter Property="HorizontalOptions" Value="Center" />
+            </Style>
+        </ResourceDictionary>
+    </ContentPage.Resources>
 
+
+
+    <ContentPage.Content>
+        <Grid RowSpacing ="15" ColumnSpacing="30">
+
+            <Grid.RowDefinitions>
+                <RowDefinition Height="*" />
+                <RowDefinition Height="AUTO" />
+                <RowDefinition Height="AUTO"/>
+                <RowDefinition Height="15" />
+                <RowDefinition Height="AUTO" />
+                <RowDefinition Height="AUTO" />
+                <RowDefinition Height="15" />
+                <RowDefinition Height="AUTO" />
+                <RowDefinition Height="AUTO" />
+                <RowDefinition Height="*" />
+            </Grid.RowDefinitions>
+
+            <Grid.ColumnDefinitions>
+                <ColumnDefinition Width="*"/>
+                <ColumnDefinition Width="AUTO"/>
+                <ColumnDefinition Width="AUTO"/>
+                <ColumnDefinition Width="*"/>
+            </Grid.ColumnDefinitions>
+
+            <Button     Style="{StaticResource aquaCircleButton}"
+                        Image="Ball_white_50.png" 
+                        Grid.Row="1"
+                        Grid.Column="1"
+                        Clicked="OnNewGameClicked" />
+
+            <Label      Text="Start New Game"
+                        FontSize="16"
+                        HorizontalOptions="Center"
+                        Grid.Row="2"
+                        Grid.Column="1"/>
+
+            <Button     Style="{StaticResource aquaCircleButton}"
+                        Image="Cup_white_50.png"
+                        Grid.Row="1"
+                        Grid.Column="2"
+                        Clicked="OnLeaderboardsClicked"/>
+
+            <Label      Text="Leaderboards"
+                        FontSize="16"
+                        HorizontalOptions="Center"
+                        Grid.Row="2"
+                        Grid.Column="2"/>
+
+            <Button     Style="{StaticResource aquaCircleButton}"
+                        Image="History_white_50.png"
+                        Grid.Row="4"
+                        Grid.Column="1"
+                        Clicked="OnHistoryClicked"/>
+
+            <Label      Text="History"
+                        FontSize="16"
+                        HorizontalOptions="Center"
+                        Grid.Row="5"
+                        Grid.Column="1"/>
+
+            <Button     Style="{StaticResource aquaCircleButton}"
+                        Image="Info_white_50.png"
+                        Grid.Row="4"
+                        Grid.Column="2"
+                        Clicked="OnAboutClicked"/>
+
+            <Label      Text="About"
+                        FontSize="16"
+                        HorizontalOptions="Center"
+                        Grid.Row="5"
+                        Grid.Column="2"/>
+
+            <Button     Style="{StaticResource aquaCircleButton}"
+                        Grid.Row="7"
+                        Grid.Column="1"/>
+
+            <Label      Text="Tournament"
+                        FontSize="16"
+                        HorizontalOptions="Center"
+                        Grid.Row="8"
+                        Grid.Column="1"/>
+
+            <Button     Style="{StaticResource aquaCircleButton}"
+                        Grid.Row="7"
+                        Grid.Column="2"/>
+
+            <Label      Text="Fantasy Foosball"
+                        FontSize="16"
+                        HorizontalOptions="Center"
+                        Grid.Row="8"
+                        Grid.Column="2"/>
+
+
+
+        </Grid>
+    </ContentPage.Content>
 </ContentPage>

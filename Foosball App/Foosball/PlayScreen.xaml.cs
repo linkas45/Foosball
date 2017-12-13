@@ -19,18 +19,10 @@ namespace Foosball
             team1Score.Text = 0.ToString();  //ToDo
             team2Score.Text = 0.ToString();  //ToDo
 
-            //Creating TapGestureRecognizers  
-            var tapImage = new TapGestureRecognizer();
-            //Binding events  
-            tapImage.Tapped += TapImage_Tapped;
-            //Associating tap events to the image buttons  
-            leaderboardsButton.GestureRecognizers.Add(tapImage);
         }
 
-
-        void TapImage_Tapped(object sender, EventArgs e)
+        void LeaderboardsClicked(object sender, EventArgs args)
         {
-            // handle the tap  
             Navigation.PushAsync(new LeaderBoards());
         }
 

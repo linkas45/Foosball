@@ -66,9 +66,9 @@ namespace Foosball
 
             Grid header = new Grid();
 
-            var team1NameHeader = new Label { Text = "Team1" };
-            var team2NameHeader = new Label { Text = "Team2" };
-            var scoreHeader = new Label { Text = "Score" };
+            var team1NameHeader = new Label { Text = "Team1", FontAttributes = FontAttributes.Bold };
+            var team2NameHeader = new Label { Text = "Team2", FontAttributes = FontAttributes.Bold };
+            var scoreHeader = new Label { Text = "Score", FontAttributes = FontAttributes.Bold };
 
             header.Children.Add(team1NameHeader);
             header.Children.Add(team2NameHeader, 1, 0);
@@ -92,7 +92,7 @@ namespace Foosball
             List<MatchInfo> matches = new List<MatchInfo>();
             matches = await _data.ReadMatchesDataFromFileAsync();
             Layouts(matches);
-                  
+
         }
 
         public async void GetPlayerMatches(Team team)
