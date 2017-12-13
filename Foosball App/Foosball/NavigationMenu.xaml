@@ -91,6 +91,7 @@
                         Grid.Column="2"/>
 
             <Button     Style="{StaticResource aquaCircleButton}"
+                        Image="Tournament_white_50.png"
                         Grid.Row="7"
                         Grid.Column="1"/>
 
