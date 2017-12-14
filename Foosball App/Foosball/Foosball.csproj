@@ -57,6 +57,9 @@
       <DependentUpon>App.xaml</DependentUpon>
     </Compile>
     <Compile Include="BallRecognition.cs" />
+    <Compile Include="Fantasy.xaml.cs">
+      <DependentUpon>Fantasy.xaml</DependentUpon>
+    </Compile>
     <Compile Include="GoalCounting.cs" />
     <Compile Include="PlayScreen.xaml.cs">
       <DependentUpon>PlayScreen.xaml</DependentUpon>
@@ -70,6 +73,9 @@
     </Compile>
     <Compile Include="ScoreInput.xaml.cs">
       <DependentUpon>ScoreInput.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Tournament.xaml.cs">
+      <DependentUpon>Tournament.xaml</DependentUpon>
     </Compile>
     <Compile Include="VideoFile.cs" />
     <Compile Include="About.xaml.cs">
@@ -116,6 +122,18 @@
   </ItemGroup>
   <ItemGroup>
     <EmbeddedResource Include="ScoreInput.xaml">
+      <Generator>MSBuild:UpdateDesignTimeXaml</Generator>
+      <SubType>Designer</SubType>
+    </EmbeddedResource>
+  </ItemGroup>
+  <ItemGroup>
+    <EmbeddedResource Include="Fantasy.xaml">
+      <Generator>MSBuild:UpdateDesignTimeXaml</Generator>
+      <SubType>Designer</SubType>
+    </EmbeddedResource>
+  </ItemGroup>
+  <ItemGroup>
+    <EmbeddedResource Include="Tournament.xaml">
       <Generator>MSBuild:UpdateDesignTimeXaml</Generator>
       <SubType>Designer</SubType>
     </EmbeddedResource>

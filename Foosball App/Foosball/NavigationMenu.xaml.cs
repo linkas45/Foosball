@@ -31,6 +31,16 @@ namespace Foosball
             Navigation.PushAsync(new About());
         }
 
+        void OnFantasyClicked(object sender, EventArgs args)
+        {
+            Navigation.PushAsync(new Fantasy());
+        }
+
+        void OnTournamentClicked(object sender, EventArgs args)
+        {
+            Navigation.PushAsync(new Tournament());
+        }
+
         protected override bool OnBackButtonPressed()
         {
             return base.OnBackButtonPressed();

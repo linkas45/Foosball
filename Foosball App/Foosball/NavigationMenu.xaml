@@ -88,7 +88,9 @@
                         Grid.Row="7"
                         Grid.Column="1"/>
 
-            <Label      Text="Fantasy Foosball"
+
+            <Label      Text="Tournament"
+
                         FontSize="16"
                         HorizontalOptions="Center"
                         Grid.Row="8"
@@ -100,7 +102,9 @@
                         Grid.Column="2"
                         Clicked="OnAboutClicked"/>
 
-            <Label      Text="About"
+
+            <Label      Text="Fantasy Foosball"
+
                         FontSize="16"
                         HorizontalOptions="Center"
                         Grid.Row="8"
