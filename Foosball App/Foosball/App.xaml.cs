@@ -1,4 +1,5 @@
-﻿using Xamarin.Forms;
+﻿using System;
+using Xamarin.Forms;
 
 namespace Foosball
 {
@@ -29,5 +30,6 @@ namespace Foosball
         {
             // Handle when your app resumes
         }
+
     }
 }
