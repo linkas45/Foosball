@@ -33,7 +33,7 @@ namespace Foosball
 
         protected override bool OnBackButtonPressed()
         {
-            return true;
+            return base.OnBackButtonPressed();
         }
     }
 }

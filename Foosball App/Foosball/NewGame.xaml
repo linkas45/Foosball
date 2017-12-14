@@ -2,7 +2,7 @@
 <ContentPage xmlns="http://xamarin.com/schemas/2014/forms" xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml" x:Class="Foosball.NewGame">
     <ContentPage.Content>
 
-        <Grid Margin="20"
+        <Grid Margin="15"
               TranslationY="25">
 
             <Grid.RowDefinitions>
@@ -23,14 +23,14 @@
                    FontSize="20"
                    Text=""
                    x:Name="team1NameEntry"
-                   Margin="0, 40, 0, 0"
+                   Margin="0, 30, 0, 0"
                    Grid.Row="1"/>
 
             <Entry Placeholder="Team 2 name"
                    FontSize="20"
                    Text=""
                    x:Name="team2NameEntry"
-                   Margin="0, 30, 0, 0"
+                   Margin="0, 20, 0, 0"
                    Grid.Row="2"/>
 
             <Button Text="Submit"
