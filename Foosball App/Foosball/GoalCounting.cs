@@ -1,4 +1,5 @@
 ﻿using System;
+using En
 //using Emgu.CV;
 //using Emgu.CV.CvEnum;
 //using Emgu.CV.Structure;
@@ -28,6 +29,6 @@ namespace Foosball
                 }
             }
         }*/
-           
+        
     }
 }

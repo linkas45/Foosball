@@ -4,14 +4,13 @@
   <PropertyGroup>
     <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
     <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
-    <ProjectGuid>{46FB2C54-2C91-49DA-9149-6C109E2DCE23}</ProjectGuid>
+    <ProjectGuid>{E64A5C06-FF1A-41F5-A7AB-7DFFB3F90179}</ProjectGuid>
     <OutputType>Library</OutputType>
     <AppDesignerFolder>Properties</AppDesignerFolder>
-    <RootNamespace>Foosball_dll</RootNamespace>
-    <AssemblyName>Foosball_dll</AssemblyName>
-    <TargetFrameworkVersion>v4.5</TargetFrameworkVersion>
+    <RootNamespace>EntityModel</RootNamespace>
+    <AssemblyName>EntityModel</AssemblyName>
+    <TargetFrameworkVersion>v4.6.1</TargetFrameworkVersion>
     <FileAlignment>512</FileAlignment>
-    <TargetFrameworkProfile />
   </PropertyGroup>
   <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
     <DebugSymbols>true</DebugSymbols>
@@ -32,16 +31,10 @@
   </PropertyGroup>
   <ItemGroup>
     <Reference Include="EntityFramework, Version=6.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089, processorArchitecture=MSIL">
-      <HintPath>..\..\Foosball App\packages\EntityFramework.6.2.0\lib\net45\EntityFramework.dll</HintPath>
+      <HintPath>..\packages\EntityFramework.6.2.0\lib\net45\EntityFramework.dll</HintPath>
     </Reference>
     <Reference Include="EntityFramework.SqlServer, Version=6.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089, processorArchitecture=MSIL">
-      <HintPath>..\..\Foosball App\packages\EntityFramework.6.2.0\lib\net45\EntityFramework.SqlServer.dll</HintPath>
-    </Reference>
-    <Reference Include="PCLStorage, Version=1.0.2.0, Culture=neutral, PublicKeyToken=286fe515a2c35b64, processorArchitecture=MSIL">
-      <HintPath>..\packages\PCLStorage.1.0.2\lib\net45\PCLStorage.dll</HintPath>
-    </Reference>
-    <Reference Include="PCLStorage.Abstractions, Version=1.0.2.0, Culture=neutral, PublicKeyToken=286fe515a2c35b64, processorArchitecture=MSIL">
-      <HintPath>..\packages\PCLStorage.1.0.2\lib\net45\PCLStorage.Abstractions.dll</HintPath>
+      <HintPath>..\packages\EntityFramework.6.2.0\lib\net45\EntityFramework.SqlServer.dll</HintPath>
     </Reference>
     <Reference Include="System" />
     <Reference Include="System.ComponentModel.DataAnnotations" />
@@ -56,54 +49,81 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="CalculateRanking.cs" />
-    <Compile Include="Interfaces\ICalculateRanking.cs" />
-    <Compile Include="Interfaces\ISelectFile.cs" />
-    <Compile Include="Interfaces\IWriteReadData.cs" />
+    <Compile Include="CbbNx.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
-    <Compile Include="SelectFile.cs" />
-    <Compile Include="TurnyrasXd.Context.cs">
+    <Compile Include="TurnyrasModel.Context.cs">
       <AutoGen>True</AutoGen>
       <DesignTime>True</DesignTime>
-      <DependentUpon>TurnyrasXd.Context.tt</DependentUpon>
+      <DependentUpon>TurnyrasModel.Context.tt</DependentUpon>
     </Compile>
-    <Compile Include="TurnyrasXd.cs">
+    <Compile Include="TurnyrasModel.cs">
       <AutoGen>True</AutoGen>
       <DesignTime>True</DesignTime>
-      <DependentUpon>TurnyrasXd.tt</DependentUpon>
+      <DependentUpon>TurnyrasModel.tt</DependentUpon>
     </Compile>
-    <Compile Include="TurnyrasXd.Designer.cs">
+    <Compile Include="TurnyrasModel.Designer.cs">
       <AutoGen>True</AutoGen>
       <DesignTime>True</DesignTime>
-      <DependentUpon>TurnyrasXd.edmx</DependentUpon>
+      <DependentUpon>TurnyrasModel.edmx</DependentUpon>
     </Compile>
-    <Compile Include="Utils\CurrentGameInfo.cs" />
-    <Compile Include="Utils\MatchInfo.cs" />
-    <Compile Include="Utils\Team.cs" />
-    <Compile Include="WriteReadData.cs" />
+    <Compile Include="XdModel.Context.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>XdModel.Context.tt</DependentUpon>
+    </Compile>
+    <Compile Include="XdModel.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>XdModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="XdModel.Designer.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>XdModel.edmx</DependentUpon>
+    </Compile>
   </ItemGroup>
   <ItemGroup>
     <None Include="App.config" />
     <None Include="packages.config" />
-    <EntityDeploy Include="TurnyrasXd.edmx">
+    <EntityDeploy Include="TurnyrasModel.edmx">
       <Generator>EntityModelCodeGenerator</Generator>
-      <LastGenOutput>TurnyrasXd.Designer.cs</LastGenOutput>
+      <LastGenOutput>TurnyrasModel.Designer.cs</LastGenOutput>
     </EntityDeploy>
-    <None Include="TurnyrasXd.edmx.diagram">
-      <DependentUpon>TurnyrasXd.edmx</DependentUpon>
+    <None Include="TurnyrasModel.edmx.diagram">
+      <DependentUpon>TurnyrasModel.edmx</DependentUpon>
+    </None>
+    <EntityDeploy Include="XdModel.edmx">
+      <Generator>EntityModelCodeGenerator</Generator>
+      <LastGenOutput>XdModel.Designer.cs</LastGenOutput>
+    </EntityDeploy>
+    <None Include="XdModel.edmx.diagram">
+      <DependentUpon>XdModel.edmx</DependentUpon>
     </None>
   </ItemGroup>
   <ItemGroup>
-    <Content Include="TurnyrasXd.Context.tt">
+    <Content Include="TurnyrasModel.Context.tt">
       <Generator>TextTemplatingFileGenerator</Generator>
-      <DependentUpon>TurnyrasXd.edmx</DependentUpon>
-      <LastGenOutput>TurnyrasXd.Context.cs</LastGenOutput>
+      <DependentUpon>TurnyrasModel.edmx</DependentUpon>
+      <LastGenOutput>TurnyrasModel.Context.cs</LastGenOutput>
     </Content>
-    <Content Include="TurnyrasXd.tt">
+    <Content Include="TurnyrasModel.tt">
       <Generator>TextTemplatingFileGenerator</Generator>
-      <DependentUpon>TurnyrasXd.edmx</DependentUpon>
-      <LastGenOutput>TurnyrasXd.cs</LastGenOutput>
+      <DependentUpon>TurnyrasModel.edmx</DependentUpon>
+      <LastGenOutput>TurnyrasModel.cs</LastGenOutput>
     </Content>
+    <Content Include="XdModel.Context.tt">
+      <Generator>TextTemplatingFileGenerator</Generator>
+      <DependentUpon>XdModel.edmx</DependentUpon>
+      <LastGenOutput>XdModel.Context.cs</LastGenOutput>
+    </Content>
+    <Content Include="XdModel.tt">
+      <Generator>TextTemplatingFileGenerator</Generator>
+      <DependentUpon>XdModel.edmx</DependentUpon>
+      <LastGenOutput>XdModel.cs</LastGenOutput>
+    </Content>
+  </ItemGroup>
+  <ItemGroup>
+    <Service Include="{508349B6-6B84-4DF5-91F0-309BEEBAD82D}" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
 </Project>
