@@ -7,13 +7,7 @@
 
     <ContentPage.Resources>
         <ResourceDictionary>
-            <Style x:Key="aquaCircleButton" TargetType="Button">
-                <Setter Property="BackgroundColor" Value="#26A69A"/>
-                <Setter Property="WidthRequest" Value="60"/>
-                <Setter Property="HeightRequest" Value="60"/>
-                <Setter Property="BorderRadius" Value="30"/>
-                <Setter Property="HorizontalOptions" Value="Center" />
-            </Style>
+   
         </ResourceDictionary>
     </ContentPage.Resources>
 
@@ -79,34 +73,38 @@
                         Grid.Column="1"/>
 
             <Button     Style="{StaticResource aquaCircleButton}"
-                        Image="Info_white_50.png"
+                        Image="Tournament_white_50.png"
                         Grid.Row="4"
-                        Grid.Column="2"
-                        Clicked="OnAboutClicked"/>
+                        Grid.Column="2"/>
 
-            <Label      Text="About"
+            <Label      Text="Tournament"
                         FontSize="16"
                         HorizontalOptions="Center"
                         Grid.Row="5"
                         Grid.Column="2"/>
 
             <Button     Style="{StaticResource aquaCircleButton}"
+                        Image="Star_white_50.png"
                         Grid.Row="7"
                         Grid.Column="1"/>
 
 
             <Label      Text="Tournament"
+
                         FontSize="16"
                         HorizontalOptions="Center"
                         Grid.Row="8"
                         Grid.Column="1"/>
 
             <Button     Style="{StaticResource aquaCircleButton}"
+                        Image="Info_white_50.png"
                         Grid.Row="7"
-                        Grid.Column="2"/>
+                        Grid.Column="2"
+                        Clicked="OnAboutClicked"/>
 
 
             <Label      Text="Fantasy Foosball"
+
                         FontSize="16"
                         HorizontalOptions="Center"
                         Grid.Row="8"

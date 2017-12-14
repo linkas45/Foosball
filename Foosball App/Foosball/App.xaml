@@ -1,6 +1,17 @@
 ﻿<?xml version="1.0" encoding="utf-8"?>
 <Application xmlns="http://xamarin.com/schemas/2014/forms" xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml" x:Class="Foosball.App">
 	<Application.Resources>
-		<!-- Application resource dictionary -->
+        <ResourceDictionary>
+
+            <Style x:Key="aquaCircleButton" TargetType="Button">
+                <Setter Property="BackgroundColor" Value="#26A69A"/>
+                <Setter Property="WidthRequest" Value="60"/>
+                <Setter Property="HeightRequest" Value="60"/>
+                <Setter Property="BorderRadius" Value="30"/>
+                <Setter Property="HorizontalOptions" Value="Center" />
+                <Setter Property="VerticalOptions" Value="Center"/>
+            </Style>
+            
+        </ResourceDictionary>
 	</Application.Resources>
 </Application>
