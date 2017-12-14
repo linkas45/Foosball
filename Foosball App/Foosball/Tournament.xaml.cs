@@ -10,9 +10,9 @@ using Xamarin.Forms.Xaml;
 namespace Foosball
 {
     [XamlCompilation(XamlCompilationOptions.Compile)]
-    public partial class Fantasy : ContentPage
+    public partial class Tournament : ContentPage
     {
-        public Fantasy()
+        public Tournament()
         {
             InitializeComponent();
         }

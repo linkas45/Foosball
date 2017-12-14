@@ -94,6 +94,7 @@
                         Grid.Row="7"
                         Grid.Column="1"/>
 
+
             <Label      Text="Tournament"
                         FontSize="16"
                         HorizontalOptions="Center"
@@ -103,6 +104,7 @@
             <Button     Style="{StaticResource aquaCircleButton}"
                         Grid.Row="7"
                         Grid.Column="2"/>
+
 
             <Label      Text="Fantasy Foosball"
                         FontSize="16"
