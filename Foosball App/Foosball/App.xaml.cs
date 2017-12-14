@@ -8,7 +8,11 @@ namespace Foosball
         {
             InitializeComponent();
 
-            MainPage = new NavigationPage(new NavigationMenu());
+            MainPage = new NavigationPage(new NavigationMenu())
+            {
+                BarBackgroundColor = Color.FromHex("#00695C"),
+                BarTextColor = Color.White,
+            };
         }
 
         protected override void OnStart()
@@ -25,5 +29,6 @@ namespace Foosball
         {
             // Handle when your app resumes
         }
+
     }
 }
