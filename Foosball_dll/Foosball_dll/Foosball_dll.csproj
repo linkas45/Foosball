@@ -62,21 +62,6 @@
     <Compile Include="Interfaces\IWriteReadData.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="SelectFile.cs" />
-    <Compile Include="TurnyrasXd.Context.cs">
-      <AutoGen>True</AutoGen>
-      <DesignTime>True</DesignTime>
-      <DependentUpon>TurnyrasXd.Context.tt</DependentUpon>
-    </Compile>
-    <Compile Include="TurnyrasXd.cs">
-      <AutoGen>True</AutoGen>
-      <DesignTime>True</DesignTime>
-      <DependentUpon>TurnyrasXd.tt</DependentUpon>
-    </Compile>
-    <Compile Include="TurnyrasXd.Designer.cs">
-      <AutoGen>True</AutoGen>
-      <DesignTime>True</DesignTime>
-      <DependentUpon>TurnyrasXd.edmx</DependentUpon>
-    </Compile>
     <Compile Include="Utils\CurrentGameInfo.cs" />
     <Compile Include="Utils\MatchInfo.cs" />
     <Compile Include="Utils\Team.cs" />
@@ -85,25 +70,6 @@
   <ItemGroup>
     <None Include="App.config" />
     <None Include="packages.config" />
-    <EntityDeploy Include="TurnyrasXd.edmx">
-      <Generator>EntityModelCodeGenerator</Generator>
-      <LastGenOutput>TurnyrasXd.Designer.cs</LastGenOutput>
-    </EntityDeploy>
-    <None Include="TurnyrasXd.edmx.diagram">
-      <DependentUpon>TurnyrasXd.edmx</DependentUpon>
-    </None>
-  </ItemGroup>
-  <ItemGroup>
-    <Content Include="TurnyrasXd.Context.tt">
-      <Generator>TextTemplatingFileGenerator</Generator>
-      <DependentUpon>TurnyrasXd.edmx</DependentUpon>
-      <LastGenOutput>TurnyrasXd.Context.cs</LastGenOutput>
-    </Content>
-    <Content Include="TurnyrasXd.tt">
-      <Generator>TextTemplatingFileGenerator</Generator>
-      <DependentUpon>TurnyrasXd.edmx</DependentUpon>
-      <LastGenOutput>TurnyrasXd.cs</LastGenOutput>
-    </Content>
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
 </Project>
