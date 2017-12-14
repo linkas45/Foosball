@@ -10,6 +10,7 @@ namespace Foosball
     {
         public About()
         {
+            this.Title = "About";
             InitializeComponent();
 
             Test();

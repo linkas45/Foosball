@@ -61,21 +61,8 @@
                         VerticalOptions="Center"
                         Margin="10, 0, 0, 0"/>
 
-
-            <!-- <Image Source="Leaderboards.png"
-                   Grid.Row="0"
-                   Grid.RowSpan="3"
-                   Grid.Column="3"
-                   Aspect="AspectFit"
-                   x:Name="leaderboardsButton"/>-->
-
-            <Button BackgroundColor="#26A69A"
-                    WidthRequest="56"
-                    HeightRequest="56"
-                    BorderRadius="28"
+            <Button Style="{StaticResource aquaCircleButton}"
                     Image="Cup_white_50.png"
-                    HorizontalOptions="Center"
-                    VerticalOptions="Center"
                     Grid.Row="0"
                     Grid.RowSpan="2"
                     Grid.Column="3"
