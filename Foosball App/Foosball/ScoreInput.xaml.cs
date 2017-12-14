@@ -4,6 +4,7 @@ using Foosball_dll.Utils;
 using Xamarin.Forms;
 using Xamarin.Forms.Xaml;
 using Foosball_dll.Interfaces;
+using System.Data;
 
 namespace Foosball
 {
@@ -12,11 +13,14 @@ namespace Foosball
     {
         private IWriteReadData _data = new WriteReadData();
         private ICalculateRanking _calcRanking = new CalculateRanking();
+        private DataTable dt = new DataTable();
+
 
         public ScoreInput()
         {
             InitializeComponent();
         }
+
 
         public ScoreInput(int team1Score, int team2Score)
         {
@@ -30,8 +34,20 @@ namespace Foosball
             t1Name.Text = CurrentGameInfo.Team1Name;
             t2Name.Text = CurrentGameInfo.Team2Name;
 
+            AddCols();
+
+            dt.Rows.Add(t1Name.Text, t2Name.Text, team1Score.ToString() + ":" + team2Score.ToString());
+
         }
          
+
+        private void AddCols()
+        {
+            dt.Columns.Add("FirstTeam", typeof(string));
+            dt.Columns.Add("SecondTeam", typeof(string));
+            dt.Columns.Add("Result", typeof(string));
+        }
+
         private async void Button_Clicked(object sender, EventArgs e)
         {
             //Parse scores
