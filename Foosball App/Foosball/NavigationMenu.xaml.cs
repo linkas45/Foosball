@@ -2,6 +2,7 @@
 using System.Diagnostics;
 using System;
 
+
 namespace Foosball
 {
     public partial class NavigationMenu : ContentPage
@@ -20,14 +21,29 @@ namespace Foosball
         {
             Navigation.PushAsync(new LeaderBoards());
         }
-        void OnWebServiceClicked(object sender, EventArgs args)
+        void OnHistoryClicked(object sender, EventArgs args)
         {
-            Navigation.PushAsync(new WebService());
+            Navigation.PushAsync(new History());
         }
 
         void OnAboutClicked(object sender, EventArgs args)
         {
             Navigation.PushAsync(new About());
+        }
+
+        void OnFantasyClicked(object sender, EventArgs args)
+        {
+            Navigation.PushAsync(new Fantasy());
+        }
+
+        void OnTournamentClicked(object sender, EventArgs args)
+        {
+            Navigation.PushAsync(new Tournament());
+        }
+
+        protected override bool OnBackButtonPressed()
+        {
+            return base.OnBackButtonPressed();
         }
     }
 }

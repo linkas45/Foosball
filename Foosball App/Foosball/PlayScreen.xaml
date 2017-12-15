@@ -1,0 +1,94 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage xmlns="http://xamarin.com/schemas/2014/forms"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             x:Class="Foosball.PlayScreen"
+             NavigationPage.HasNavigationBar="False">
+
+    <ContentPage.Content>
+
+        <Grid RowSpacing ="0" ColumnSpacing="0">
+
+            <Grid.RowDefinitions>
+                <RowDefinition Height="50"/>
+                <RowDefinition Height="20"/>
+                <RowDefinition Height="30"/>
+                <RowDefinition Height="5"/>
+                <RowDefinition Height="*"/>
+                <RowDefinition Height="AUTO"/>
+            </Grid.RowDefinitions>
+
+            <Grid.ColumnDefinitions>
+                <ColumnDefinition Width="120"/>
+                <ColumnDefinition Width="50"/>
+                <ColumnDefinition Width="120"/>
+                <ColumnDefinition Width="*"/>
+            </Grid.ColumnDefinitions>
+
+            <!--Teams scores-->
+            <Label Text=""
+                   x:Name="team1Score"
+                   VerticalOptions="Center"
+                   HorizontalOptions="Center"
+                   Grid.Row="0"
+                   Grid.Column="0"
+                   FontSize="30"
+                   Margin="0, 10, 0, 0"/>
+
+            <Label Text="-"
+                   VerticalOptions="Center"
+                   HorizontalOptions="Center"
+                   Grid.Row="0"
+                   Grid.Column="1"
+                   FontSize="30"
+                   Margin="0, 10, 0, 0"/>
+
+            <Label Text=""
+                   x:Name="team2Score"
+                   VerticalOptions="Center"
+                   HorizontalOptions="Center"
+                   Grid.Row="0"
+                   Grid.Column="2"
+                   FontSize="30"
+                   Margin="0, 10, 0, 0"/>
+
+            <BoxView    HeightRequest="1"
+                        WidthRequest="280"
+                        BackgroundColor="#BDBDBD" 
+                        Grid.Row="1"
+                        Grid.Column="0"
+                        Grid.ColumnSpan="3"
+                        HorizontalOptions="Center" 
+                        VerticalOptions="Center"
+                        Margin="10, 0, 0, 0"/>
+
+            <Button Style="{StaticResource aquaCircleButton}"
+                    Image="Cup_white_50.png"
+                    Grid.Row="0"
+                    Grid.RowSpan="2"
+                    Grid.Column="3"
+                    Clicked="LeaderboardsClicked"
+                />
+
+
+            <!--Video screen-->
+            <!--ToDo Add Video screen for playback-->
+            <BoxView BackgroundColor="#BDBDBD"
+                     Grid.Row="4"
+                     Grid.Column="0"
+                     Grid.ColumnSpan="4"
+                     Margin="10, 0, 10, 0"/>
+
+            <!--End game buton-->
+
+            <Button Text="End Game"
+                    WidthRequest="150" 
+                    HeightRequest="40" 
+                    Grid.Row="5"
+                    Grid.Column="0"
+                    Grid.ColumnSpan="4"
+                    Margin="10, 10, 10, 10"
+                    Clicked="Button_Clicked"/>
+
+        </Grid>
+    </ContentPage.Content>
+</ContentPage>

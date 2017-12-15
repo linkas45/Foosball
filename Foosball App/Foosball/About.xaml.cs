@@ -10,6 +10,7 @@ namespace Foosball
     {
         public About()
         {
+            this.Title = "About";
             InitializeComponent();
 
             Test();
@@ -23,11 +24,6 @@ namespace Foosball
             IFile leaderboardsFile = await dataFolder.CreateFileAsync("Leaderboards.txt", CreationCollisionOption.ReplaceExisting);
             IFile historyFile = await dataFolder.CreateFileAsync("History.txt", CreationCollisionOption.ReplaceExisting);
 
-        }
-
-        void OnImageClcked(object sender, EventArgs args)
-        {
-            
         }
     }
 }

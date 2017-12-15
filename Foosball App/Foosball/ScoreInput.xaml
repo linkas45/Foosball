@@ -1,0 +1,55 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage xmlns="http://xamarin.com/schemas/2014/forms"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             x:Class="Foosball.ScoreInput">
+
+    <ContentPage.Content>
+
+        <Grid Margin="15"
+              TranslationY="25">
+
+            <Grid.RowDefinitions>
+                <RowDefinition Height="AUTO"/>
+                <RowDefinition Height="AUTO"/>
+                <RowDefinition Height="AUTO"/>
+                <RowDefinition Height="AUTO"/>
+                <RowDefinition Height="AUTO"/>
+                <RowDefinition Height="AUTO"/>
+            </Grid.RowDefinitions>
+
+            <Label Text="Final scores"
+                   HorizontalOptions="Center"
+                   FontSize="25"
+                   Grid.Row="0"/>
+
+            <Label x:Name="t1Name"
+                   Grid.Row="1"
+                   FontSize="20"
+                   Margin="0, 30, 0, 0"/>
+
+            <Entry Text="Placeholder"
+                   Grid.Row="2"
+                   FontSize="20"
+                   Keyboard="Numeric"
+                   x:Name="team1ScoreEntry"/>
+
+            <Label x:Name="t2Name"
+                   Grid.Row="3"
+                   FontSize="20"
+                   Margin="0, 30, 0, 0"/>
+
+            <Entry Text="Placeholder"
+                   Grid.Row="4"
+                   FontSize="20"
+                   Keyboard="Numeric"
+                   Margin="0, 0, 0, 20"
+                   x:Name="team2ScoreEntry"/>
+
+            <Button Text="Submit"
+                    FontSize="20"
+                    Grid.Row="5"
+                    Clicked="Button_Clicked"/>
+
+        </Grid>
+    </ContentPage.Content>
+</ContentPage>
