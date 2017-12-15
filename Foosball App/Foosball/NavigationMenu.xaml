@@ -75,7 +75,8 @@
             <Button     Style="{StaticResource aquaCircleButton}"
                         Image="Tournament_white_50.png"
                         Grid.Row="4"
-                        Grid.Column="2"/>
+                        Grid.Column="2"
+                        Clicked="OnTournamentClicked"/>
 
             <Label      Text="Tournament"
                         FontSize="16"
@@ -86,7 +87,9 @@
             <Button     Style="{StaticResource aquaCircleButton}"
                         Image="Star_white_50.png"
                         Grid.Row="7"
-                        Grid.Column="1"/>
+                        Grid.Column="1"
+                        Clicked="OnFantasyClicked"/>
+
 
             <Label      Text="Fantasy Foosball"
                         FontSize="16"
@@ -99,6 +102,7 @@
                         Grid.Row="7"
                         Grid.Column="2"
                         Clicked="OnAboutClicked"/>
+
 
             <Label      Text="About"
                         FontSize="16"

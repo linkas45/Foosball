@@ -1,25 +1,20 @@
-using System;
-using System.Diagnostics;
-using Foosball_dll.Utils;
+﻿using System;
+using System.Collections.Generic;
+using System.Linq;
+using System.Text;
+using System.Threading.Tasks;
 
 using Xamarin.Forms;
-
-//Fantasy Foosball game
+using Xamarin.Forms.Xaml;
 
 namespace Foosball
 {
+    [XamlCompilation(XamlCompilationOptions.Compile)]
     public partial class Fantasy : ContentPage
     {
-
         public Fantasy()
         {
             InitializeComponent();
-        }
-
-        // Submit button
-        private void Button_Clicked(object sender, EventArgs e)
-        {
-
         }
     }
 }
