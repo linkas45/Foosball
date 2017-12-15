@@ -5,6 +5,7 @@
              x:Class="Foosball.NavigationMenu">
 
 
+
     <ContentPage.Resources>
         <ResourceDictionary>
    

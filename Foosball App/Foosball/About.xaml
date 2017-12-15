@@ -1,5 +1,24 @@
 ﻿<?xml version="1.0" encoding="UTF-8"?>
 <ContentPage xmlns="http://xamarin.com/schemas/2014/forms" xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml" x:Class="Foosball.About">
-	<ContentPage.Content>
-	</ContentPage.Content>
+    <ContentPage.Content>
+        <ScrollView>
+            <Image Source="History_white_50.png"
+                   Clicked="OnImageClcked"/>
+            
+            <Label Text="Projektą Foosball kūrė Programų Sistemų II kurso 2 grupės studentai.&#x0a;Grupelė jaunuolių pasivadinusi Psychodelic Art pastebėjo inovacijų trūkumą stalo futbolo žaidime ir patikėjo, jog gali iš esmės pakeisti šią industriją.&#x0a;&#x0a;Mobilioji
+aplikacija skirta stalo futbolo žaidimo sekimui realiuoju laiku ir rezultatų analizei. Programėlėje taip pat galima matyti geriausių komandų sąrašą, praėjusių mačų istoriją, 
+sekti savo mėgstamiausias komandas Fantasy Foosball skiltyje ir sudalyvauti lažybose palaikant komandą su atitinkamu koeficientu.&#x0a;&#x0a;Komanda labai rimtai svarsto plėstis toliau
+ir savo produktą pasiūlyti tarptautiniai rinkai bei pritaikyti pasaulio stalo futbolo čempionatuose. Žinoma, tikriausiai nieko nebūtų įvykę, jeigu komandoje nebūtų tokių asmenybių kaip Benas Gudeliauskas,
+Matas Kaminskas, Miglė Budrytė ar Simonas Butkus. Taip pat, projektas tikriausiai ir liktų tik idėja, jeigu ne dėstytojo Zoriano Ivaneco pamokymai bei nuolatinis motyvavimas.&#x0a;Kadangi projektas yra nekomercinis,
+o studentai dirba vien tik iš idėjos ir dėl geresnio pažymio, labai kviečiame mums paaukoti novatorišku būdu - bitkoinais. Siųsdami bitkoinus šiuo adresu 1D3h5gWusRQrd4Po9urCJdHQdFn6DqL3uA prisidėsite prie mūsų idėjos įgyvendinimo,
+o mes, savo ruožtu, pažadame, jog už visus gautus pinigus nusipirksime daugiau maisto pavalgyti."
+                   x:Name="team1Score"
+                   VerticalOptions="Center"
+                   HorizontalOptions="Center"
+                   Grid.Row="0"
+                   Grid.Column="0"
+                   FontSize="15"
+                   Margin="0, 10, 0, 0"/>
+        </ScrollView>
+    </ContentPage.Content>
 </ContentPage>
