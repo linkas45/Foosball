@@ -16,5 +16,21 @@ namespace Foosball
         {
             InitializeComponent();
         }
-    }
+
+
+     /*   private string createDatabase(string path)
+        {
+            try
+            {
+                var connection = new SQLiteAsyncConnection(path);
+                connection.CreateTableAsync<TournamentTeam>();
+                return "Database created";
+            }
+            catch (SQLiteException ex)
+            {
+                return ex.Message;
+            }
+        }*/
+
+   }
 }
