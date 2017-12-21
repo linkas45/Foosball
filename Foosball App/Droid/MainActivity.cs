@@ -8,7 +8,6 @@ using Android.Views;
 using Android.Widget;
 using Android.OS;
 using Android.Graphics;
-using EntityModel;
 
 namespace Foosball.Droid
 {
@@ -17,7 +16,6 @@ namespace Foosball.Droid
     {
         protected override void OnCreate(Bundle bundle)
         {
-            CbbNx Duchas = new CbbNx();
             TabLayoutResource = Resource.Layout.Tabbar;
             ToolbarResource = Resource.Layout.Toolbar;
 
